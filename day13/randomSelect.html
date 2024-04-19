@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: monospace;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 500px;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        .input {
+            width: 100%;
+            height: 4rem;
+        }
+
+        .choices {
+            margin: 1rem;
+        }
+
+        .tags {
+            background-color: aqua;
+            padding: 0.4rem;
+            border-radius: .5rem;
+            margin:.2rem;
+        }
+
+        .active {
+            background-color: rgb(207, 204, 204);
+        }
+        .final {
+  background-color: green;
+  border-color: green;
+  color: white;
+  font-weight: bold;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Enter all the choices divided by comma<br>
+            press enter when you are done</h3>
+        <input type="text" class="input">
+        <div class="choices">
+        </div>
+    </div>
+
+    <script>
+ let input = document.querySelector('.input');
+let choices = document.querySelector('.choices');
+
+input.addEventListener('keyup', function (event) {
+  let inputChoices = input.value;
+  let splitChoices = inputChoices.split('');
+  let filteredChoices = splitChoices.filter(choice => choice.trim() !== '').map(choice => choice.trim())
+  
+  choices.innerHTML = '';
+  
+  filteredChoices.forEach(function (choice) {
+      let choiceEl = document.createElement('span');
+      choiceEl.classList.add('tags');
+      choiceEl.innerText = choice;
+      choices.appendChild(choiceEl);
+    });
+    
+
+  if (event.key === 'Enter') {
+    let tags = document.querySelectorAll('.tags');
+    let randomIndex = Math.floor(Math.random() * tags.length);
+    let currentTagIndex = 0;
+    let previousTagIndex = 0;
+
+    let intervalId = setInterval(function() {
+      // remove "active" class from previous tag
+      tags[previousTagIndex].classList.remove('active');
+
+      // randomly change the background color of all tags
+      tags.forEach(function(tag) {
+        let randomColor = Math.floor(Math.random()*16777215).toString(16);
+        tag.style.backgroundColor = "#" + randomColor;
+      });
+
+      // add "active" class to random tag
+      tags[randomIndex].classList.add('active');
+
+      // increment current tag index and wrap around if needed
+      previousTagIndex = currentTagIndex;
+      currentTagIndex = (currentTagIndex + 1) % tags.length;
+
+      if (currentTagIndex === randomIndex) {
+        // stop interval and change background color of final tag
+        clearInterval(intervalId);
+        tags[randomIndex].classList.remove('active');
+        tags[randomIndex].style.backgroundColor = "red";
+      }
+    }, 50);
+  }
+});
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        *,
+        *::before {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            user-select: none;
+            font-family: 'Muli', sans-serif;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            margin-left: 1rem;
+            font-size: 60px;
+            text-align: center;
+            margin: .5rem;
+            border:1px solid rgba(0,0,0,0.2)
+        }
+
+        .number.valid {
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
+            border: 1px solid steelblue
+        }
+
+        .number:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="number" class="number" placeholder="0" min="0" max="9">
+        <input type="number" class="number" placeholder="0" min="0" max="9">
+        <input type="number" class="number" placeholder="0" min="0" max="9">
+        <input type="number" class="number" placeholder="0" min="0" max="9">
+    </div>
+
+
+    <script>
+        let box = document.querySelectorAll('.number');
+
+        for (let i = 0; i < box.length; i++) {
+            box[0].focus();
+            box[i].addEventListener('keydown', function (e) {
+                if (e.key >= 0 && e.key <= 9) {
+                    box[i].value = '';
+                    setTimeout(function () {
+                        box[i + 1].focus();
+                    })
+                }
+                else if (e.key == 'Backspace') {
+
+                    setTimeout(function () {
+                        box[i - 1].focus();
+                    })
+
+                }
+
+                if (box[i].value == '') {
+                    
+                    box[i].classList.add('valid')
+                }
+                else if(box[i].value !== ''){
+                    box[i].classList.remove('valid')
+                }
+                console.log(box[i].value)
+            })
+        }
+
+    </script>
+</body>
+
+</html>

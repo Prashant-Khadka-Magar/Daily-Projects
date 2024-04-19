@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        user-select: none;
+        font-family: "Muli", sans-serif;
+        background-color: antiquewhite;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+      .container {
+        /* background-color: white; */
+        padding: 1rem;
+      }
+      input {
+        padding: 0.5rem;
+        font-size: 1.2rem;
+      }
+      input:focus {
+        outline: none;
+      }
+      .lists {
+        background-color: white;
+      }
+      .list {
+        border: 1px solid grey;
+        width: 100%;
+        padding: 0.2rem .3rem;
+        cursor: pointer;
+        position: relative;
+      }
+      .unactive.list {
+        color: rgba(0, 0, 0, 0.226);
+      }
+      .unactive.list span{
+        position: absolute;
+        height: 5px;
+        width: 100%;
+        background-color:rgb(39, 39, 39,.226);
+        top:50%;
+        left:0%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <input type="text" class="text" placeholder="Enter your todo" />
+      <div class="lists">
+        
+        </div>
+      </div>
+    </div>
+    <script>
+      let input = document.querySelector(".text");
+      let lists = document.querySelector(".lists");
+      
+      input.addEventListener("keypress",function(e){
+        if(e.key==='Enter'){
+          let newEl=document.createElement('div');
+          let newSpan=document.createElement('span')
+          newEl.classList.add('list');
+          newEl.innerHTML=input.value;
+          lists.appendChild(newEl);
+          list.appendChild('newSpan');
+          input.value='';
+        }
+        let list = document.querySelectorAll(".list");
+        list.forEach((element, idx) => {
+          element.addEventListener("click", function () {
+            this.classList.toggle("unactive");
+            element.addEventListener("contextmenu", function () {
+                this.style.display=`none`;
+            })
+          });
+        });
+        
+      })
+      
+    </script>
+  </body>
+</html>

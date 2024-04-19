@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        user-select: none;
+        font-family: "Muli", sans-serif;
+      }
+      .box {
+        height: 250px;
+        width: 300px;
+    }
+    .container {
+          box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        position: relative;
+        height: 100%;
+        width: 100%;
+        transform-style: preserve-3d;
+        transition: transform 0.5s ease;
+      }
+      .flipover{
+        transform: rotateY(180deg);
+      }
+      .front,
+      .back {
+        height: 250px;
+        width: 300px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: white;
+        backface-visibility: hidden;
+      }
+    
+      .front * {
+        margin: 0.5rem 0rem;
+      }
+      .emojies {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+      }
+      .emoji {
+        padding: 0 0.2rem;
+        width: 90px;
+        background-color: rgba(228, 228, 228, 0.644);
+        font-weight: bold;
+        cursor: pointer;
+        margin: 15px 0.5rem 15px 0.5rem;
+        
+      }
+      .btn {
+        padding: 0.4rem 0.8rem;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .btn:active {
+        transform: scale(0.95);
+      }
+      i {
+        font-size: 2rem;
+        color: rgb(189, 189, 6);
+      }
+      .back {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-weight: bold;
+        padding: 0.5rem;
+        transform: rotateY(180deg);
+      }
+      .back div {
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+      }
+   
+      .selected {
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
+      <div class="box">
+        <div class="container">
+          <div class="front ">
+            <h3>How satisfied are you with our product</h3>
+            <div class="emojies">
+              <div class="emoji unhappy">
+                <i class="far fa-frown"></i>
+                <p>Unhappy</p>
+              </div>
+              <div class="emoji neutral">
+                <i class="fa-regular fa-face-meh"></i>
+                <p>Neutral</p>
+              </div>
+              <div class="emoji satisfied">
+                <i class="fa-regular fa-face-smile"></i>
+                <p>Satisfied</p>
+              </div>
+            </div>
+            <button class="btn">Send Review</button>
+          </div>
+          <div class="back">
+            <div class="heart"><i class="fa fa-heart"></i></div>
+            <div>Thank You</div>
+            <div class="feed">Feedback:Satisfied</div>
+            <div>We will use your feedback to improve our product.</div>
+          </div>
+        </div>
+      </div>
+    <script>
+      let emojies = document.querySelectorAll(".emoji");
+      let btn = document.querySelector(".btn");
+      let front = document.querySelector(".front");
+      let feed = document.querySelector(".feed");
+      let container=document.querySelector(".container");
+      let emotions = ["Unhappy", "Neutral", "Satisfied"];
+      for (let i = 0; i < emojies.length; i++) {
+        emojies[i].addEventListener("click", function () {
+          for (let j = 0; j < emojies.length; j++) {
+            emojies[j].classList.remove("selected");
+          }
+          emojies[i].classList.add("selected");
+          if (emojies[i].classList.contains("selected")) {
+            btn.addEventListener("click", function () {
+              feed.innerHTML = `Feedback: ${emotions[i]}`;
+              container.classList.add('flipover')
+              console.log(i);
+            });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

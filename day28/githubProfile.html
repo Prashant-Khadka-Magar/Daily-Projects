@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Muli', sans-serif;
+            flex-direction: column;
+            background-color: steelblue;
+        }
+
+        #main {
+            background-color: slateblue;
+            border-radius: 10px;
+            margin-top: 2rem;
+            margin-left:20
+        }
+
+        .card {
+            display: flex;
+            margin-top: 1rem;
+            color: white;
+            overflow: hidden;
+        }
+
+        .user-img {
+            margin-left: .8rem;
+        }
+
+        .avatar {
+            border: 3px solid steelblue;
+            border-radius: 50%;
+            margin-top: .5rem;
+        }
+
+        .user-info * {
+            margin-bottom: 1rem;
+            padding: 0px 1rem;
+        }
+
+        ul {
+            display: flex;
+
+        }
+
+        li {
+            padding-left: 1rem;
+        }
+
+        .repos {
+            color: white;
+            background-color: steelblue;
+            padding: .2rem .5rem;
+        }
+
+        h1 {
+            padding-top: 0px;
+            margin-top: 0;
+        }
+        input{
+            padding:.5rem;
+            background-color: slateblue;
+            color: white;
+            outline: none;
+            border:none;
+            border-radius:10px;
+            width:50vw;
+        }
+        input::placeholder{
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="user-form" id="form">
+        <input type="text" id="search" placeholder="Search github profile">
+    </form>
+    <main id="main">
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js" integrity="sha512-nnNHpffPSgINrsR8ZAIgFUIMexORL5tPwsfktOTxVYSv+AUAILuFYWES8IHl+hhIhpFGlKvWFiz9ZEusrPcSBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>let form=document.getElementById("form");
+        let main=document.getElementById("main");
+        let search=document.getElementById("search");
+        let APIURL='https://api.github.com/users/'
+        
+        getUser(search.value);
+        async function getUser(username){
+            try{
+                let {data}=await axios(APIURL + username)
+        
+                createUserCard(data)
+                getRepos(username)
+            }
+            catch(err){
+                if(err.response.status==404){
+                    createErrorCard('No profile with this user name')
+                }
+            }
+        }
+        async function getRepos(username){
+            try{
+                let {data}=await axios(APIURL + username + '/repos')
+        
+                addReposToCard(data)
+        
+                createUserCard(data)
+            }
+            catch(err){
+                createErrorCard('Problem fetching repos')
+            }
+        }
+        
+        function createUserCard(user){
+            let cardHTML=`
+        <div class="card">
+            <div class="user-img">
+                <img src="${user.avatar_url}"
+                    alt="" class="avatar" style="height:100px;width:100px">
+            </div>
+            <div class="user-info">
+                <h2>${user.name}</h2>
+                <p>${user.bio}</p>
+                <ul>
+                    <li>${user.followers}<strong>Followers</strong></li>
+                    <li>${user.following}<strong>Following</strong></li>
+                    <li>${user.public_repos}<strong>Repos</strong></li>
+                </ul>
+        
+                <div id="repos">
+        
+                </div>
+            </div>
+        </div>`
+        main.innerHTML=cardHTML;
+        }
+        
+        function createErrorCard(msg){
+            let cardHTML =`<div class='card'>
+                <h1>${msg}</h1></div>`
+            main.innerHTML=cardHTML;
+        }
+        
+        function addReposToCard(repos){
+           let reposEl=document.getElementById('repos');
+        
+           repos.forEach(repo=>{
+            let repoEl=document.createElement('a');
+            repoEl.classList.add('repo')
+            repo.href=repo.html_url
+            repoEl.target='_blank'
+            repo.innerHTML=repo.name
+        
+            reposEl.appendChild(repoEl)
+           })
+        }
+        
+        
+        form.addEventListener('submit',function(e){
+            e.preventDefault();
+            let username=search.value;
+        
+            getUser(username);
+        });
+        
+    </script>
+</body>
+
+</html>

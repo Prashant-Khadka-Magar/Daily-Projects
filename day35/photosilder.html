@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: auto;
+            margin: 0;
+            user-select: none;
+            font-family: 'Muli', sans-serif;
+            color: rgb(255, 255, 255);
+        }
+
+        .container {
+            box-shadow: 0px 3px 10px black;
+            height: 400px;
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .photo {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .tools {
+            display: flex;
+            width: 100%;
+            background-color: slateblue;
+            padding: .5rem;
+            cursor: pointer;
+
+        }
+
+        .prev:active {
+            transform: scale(.98);
+        }
+
+        .next:active {
+            transform: scale(.98);
+        }
+
+        .prev {
+            width: 50%;
+            text-align: center;
+            border-right: 1px solid white;
+        }
+
+        .next {
+            width: 50%;
+            text-align: center;
+            border-left: 1px solid white;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .photos {
+            transition: transform .5s ease;
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="photo">
+            <div class="photos">
+                <img src="https://i.guim.co.uk/img/media/6e367b906a3b57d3a6625f6405614b669bfaa641/0_58_6720_4032/master/6720.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=7ff0c3fce84c24ef6d932a2cfda52741"
+                    alt="">
+
+                <img src="https://i.guim.co.uk/img/media/6088d89032f8673c3473567a91157080840a7bb8/413_955_2808_1685/master/2808.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=909ba4479e9a47a40fe6b5e695c3b61d"
+                    alt="">
+
+                <img src="https://idsb.tmgrup.com.tr/ly/uploads/images/2022/09/11/230255.jpg" alt="">
+
+                <img src="https://domf5oio6qrcr.cloudfront.net/medialibrary/10190/GettyImages-499689946.jpg" alt="">
+
+                <img src="https://www.lifepixel.com/wp-content/uploads/2017/01/KD-2017-1.jpg" alt="">
+
+                <img src="https://www.ukri.org/wp-content/uploads/2021/12/IUK-301121-WiltshireCountryside-Getty-1206891016.jpg"
+                    alt="">
+            </div>
+        </div>
+        <div class="tools">
+            <div class="silder prev">Previous</div>
+            <div class="silder next">Next</div>
+        </div>
+    </div>
+
+    <script>
+        let prev = document.querySelector('.prev')
+        let next = document.querySelector('.next')
+        let photos = document.querySelector('.photos')
+
+        let counter = 0;
+
+        next.addEventListener('click', function () {
+            counter = counter - 100;
+
+            photos.style.transform = `translateX(${counter}%)`
+
+            if(counter<-400){
+                photos.style.transform = `translateX(0%)`
+                counter=0;
+                console.log(counter)
+            }console.log(counter)
+        })
+        prev.addEventListener('click', function () {
+            counter = counter + 100;
+
+            photos.style.transform = `translateX(${counter}%)`
+
+            if(counter>0){
+                photos.style.transform = `translateX(-500%)`
+                counter=-400;
+                console.log(counter)
+            }console.log(counter)
+        })
+
+    </script>
+
+
+    </script>
+</body>
+
+</html>

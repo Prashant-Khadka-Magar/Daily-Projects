@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+  @import url('https://fonts.googleapis.com/css2?family=Fasthand&display=swap');
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body {
+            background-color: #d5d5d8;
+            font-family: monospace;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            height:100vh;
+            flex-direction: column;
+        }
+        .clock{
+            position: relative;
+            transform: rotate(-90deg);
+        }
+        .hand{
+            background-color: black;
+            border-radius: 10px;
+            position: absolute;
+            transform-origin: top left;
+            transition: transform 1s ease;
+        }
+        .hour{
+            height:5px;
+            width:50px;
+            transform: rotate(100deg);
+
+        }
+        .minute{
+            height:5px;
+            width:100px;
+            transform: rotate(0deg);
+        }
+        .second{
+            height:5px;
+            width:100px;
+            background-color:red;
+            transform: rotate(90deg);
+        }
+        .middle{
+            background-color:black;
+            height:10px;
+            width:10px;
+            z-index: 10;
+            transform: translateX(-8px);
+
+        }
+        .digital{
+            margin-top: 8rem;
+            font-family: 'Fasthand', cursive;
+            font-size: 2rem;
+        }
+        .day{
+            font-family: 'Fasthand', cursive;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div class="hour hand"></div>
+        <div class="minute hand"></div>
+        <div class="second hand"></div>
+        
+    </div>
+    <div class="digital">
+        Digital clock
+    </div>
+    <div class="day"></div>
+    <script>
+
+        let hourhand=document.querySelector('.hour');
+        let minutehand=document.querySelector('.minute');
+        let secondhand=document.querySelector('.second');
+        let digital=document.querySelector('.digital');
+        let day=document.querySelector('.day');
+        
+
+        let days=['SUNDAY','MODAY','TUESDAY','WEDNESDAY','THRUSDAY','FRIDAY','SATURDAY']
+        setInterval(function(){
+            let date =new Date();
+            let hour=date.getHours();
+            let minute=date.getMinutes();
+            let second=date.getSeconds();
+            let day1=date.getDay()
+            let am=null;
+            if(hour>=12){
+                am=hour%12;
+            }
+            else{
+                am=hour;
+            }
+
+            let h=am*30;
+            let m=minute*6;
+            let s=second*6;
+            hourhand.style.transform=`rotate(${h}deg)`;
+            minutehand.style.transform=`rotate(${m}deg`;
+            secondhand.style.transform=`rotate(${s}deg)`;
+            
+            digital.innerHTML=`${hour}:${minute}:${second}`;
+
+            for(let i=0;i<days.length;i++){
+                let today=days[day1];
+                day.innerHTML=today;
+            }
+        },1000)
+    </script>
+</body>
+</html>

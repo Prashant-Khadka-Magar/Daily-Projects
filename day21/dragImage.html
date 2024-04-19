@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            height:100vh;
+        }
+        .box{
+            border:1px solid black;
+            height:150px;
+            width:150px;
+            margin:1rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .img{
+            height: 140px;
+            width: 140px;
+            background-image: url(https://i.pinimg.com/736x/0e/bc/11/0ebc1105a48842e70dbcc7636abab0eb.jpg);
+            background-size: cover;
+        }
+        @media(max-width:800px){
+            body {
+                flex-direction: column;
+            }
+        }
+
+        .hold{
+            border:1px solid aqua;
+        }
+        .hide{
+            display:none;
+        }
+        .over{
+            background-color: grey;
+            border:dotted;
+        }
+        .enter{
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+    
+   <div class="box">
+    <div class="img" draggable="true"></div>
+   </div>
+   <div class="box"></div>
+   <div class="box"></div>
+   <div class="box"></div>
+
+    <script>
+        let img=document.querySelector('.img');
+        let box = document.querySelectorAll('.box');
+
+        img.addEventListener('dragstart',function(e) {
+            e.target.classList.add('hold');
+            setTimeout(function(){
+                return e.target.classList.add('hide');
+            },50)
+
+        })
+        img.addEventListener('dragend',function(e) {
+            e.target.classList.remove('hold');
+            e.target.classList.remove('hide');
+        })
+        
+
+       for(let i = 0; i <box.length; i++) {
+        box[i].addEventListener('dragover',function(e) {
+            e.preventDefault();
+            box[i].classList.add('over');
+        })
+        box[i].addEventListener('dragenter',function() {
+            box[i].classList.add('enter');
+        })
+        box[i].addEventListener('dragleave',function() {
+            box[i].classList.remove('over');
+        })
+        box[i].addEventListener('drop',function() {
+            box[i].appendChild(img);
+        })
+       }
+    </script>
+</body>
+</html>

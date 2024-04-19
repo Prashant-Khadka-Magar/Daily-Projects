@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong"
+    />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fasthand&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Alkatra&family=Delicious+Handrawn&family=Fasthand&display=swap");
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        background-color: #d5d5d8;
+        font-family: monospace;
+      }
+
+      .header {
+        padding: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(88, 88, 88);
+        color: white;
+        font-weight: bold;
+      }
+
+      .search {
+        background-color: transparent;
+        border: 2px solid grey;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+      }
+
+      .search::placeholder {
+        color: #ffffff;
+      }
+
+      .search:focus {
+        outline: none;
+        background-color: aliceblue;
+      }
+
+      #main {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: grey;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .movie {
+        width: 300px;
+        margin: 1rem;
+        position: relative;
+        overflow: hidden;
+        color: #ffffff;
+        font-size: 16px;
+        background-color: rgb(34, 33, 33);
+        padding: 0.5rem;
+        border-radius: 0.2rem;
+        font-family: "Fasthand", cursive;
+      }
+
+      .movie img {
+        width: 100%;
+      }
+
+      .movie-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+      }
+
+      .movie-info span {
+        border: 2px solid white;
+        padding: 0.3rem;
+        font-weight: bold;
+        font-family: sans-serif;
+        height: 35px;
+      }
+
+      .movie-info span.green {
+        background-color: green;
+      }
+
+      .movie-info span.orange {
+        background-color: orange;
+      }
+
+      .movie-info span.red {
+        background-color: red;
+      }
+
+      .overview {
+        position: absolute;
+        background-color: white;
+        color: black;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.5rem;
+        transform: translateY(100rem);
+        transition: transform 0.5s ease-out;
+        font-family: "Fasthand", cursive;
+        overflow-y: scroll;
+      }
+
+      .movie:hover .overview {
+        transform: translateY(0rem);
+      }
+      .logo {
+        font-family: "Trirong", serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="logo">MOVIES HARDIYA</div>
+      <form id="form">
+        <input type="text" id="search" placeholder="Search..." class="search" />
+      </form>
+    </div>
+    <div id="main"></div>
+    <script>
+      let API_URl =
+        "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=5fb746cea06b9a4e8c2d65b70190b908&page=1";
+      let IMG_PATH = "https://image.tmdb.org/t/p/w1280";
+      let SEARCH_API =
+        'https://api.themoviedb.org/3/search/movie?api_key=5fb746cea06b9a4e8c2d65b70190b908&query="';
+
+      let form = document.getElementById("form");
+      let search = document.getElementById("search");
+      let main = document.getElementById("main");
+
+      getMovies(API_URl);
+
+      async function getMovies(url) {
+        let res = await fetch(url);
+        let data = await res.json();
+        showMovies(data.results);
+      }
+
+      function showMovies(movies) {
+        main.innerHTML = "";
+
+        movies.forEach((movie) => {
+          let { title, poster_path, vote_average, overview } = movie;
+
+          let movieEl = document.createElement("div");
+          movieEl.classList.add("movie");
+
+          movieEl.innerHTML = `
+        <img src="${IMG_PATH + poster_path}" >
+        <div class="movie-info">
+            <h3>${title}</h3>
+            <span class="${movieRating(vote_average)}">${vote_average}</span>
+        </div>
+        <div class="overview">
+            <h3>Overview</h3>
+            ${overview}
+        </div>
+            `;
+          main.appendChild(movieEl);
+        });
+      }
+
+      function movieRating(vote) {
+        if (vote >= 8) {
+          return "green";
+        } else if (vote >= 5) {
+          return "orange";
+        } else {
+          return "red";
+        }
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        let searchTerm = search.value;
+
+        if (searchTerm && searchTerm !== "") {
+          getMovies(SEARCH_API + searchTerm);
+
+          search.value = "";
+        } else {
+          window.location.reload();
+        }
+      });
+    </script>
+  </body>
+</html>

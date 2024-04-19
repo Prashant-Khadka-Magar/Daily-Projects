@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: monospace;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(to top,
+                    pink 0%,
+                    pink 50%,
+                    paleturquoise 50%,
+                    paleturquoise 100%);
+        }
+
+        .container {
+            display: flex;
+            max-width: 300px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border: 1px solid rgb(255, 255, 255);
+            width: 100%;
+            padding: 1rem 0.5rem;
+            color: white;
+            background-color: black;
+            overflow: hidden;
+            transition: width 0.5s ease;
+            position: absolute;
+        }
+
+        .lists {
+            transition: transform 1s ease;
+
+        }
+
+        .active {
+            width: 30px;
+        }
+
+        .active .lists {
+            opacity: 0;
+            transform: rotate(360deg);
+            transition: transform 1s ease, opacity 1s ease;
+        }
+
+        .active .button .line1,
+        .active .button .line2 {
+            transform: rotate(0deg) translateX(-78px);
+            margin-top: 3px;
+
+        }
+
+        .line {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+            transition: transform 0.5s linear;
+            cursor: pointer;
+        }
+
+        .line1 {
+            transform: rotate(765deg) translateY(3px) translateX(2px);
+            transform-origin: center;
+
+        }
+
+        .line2 {
+            transform: rotate(-765deg);
+            transform-origin: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="lists">Home</div>
+        <div class="lists">Works</div>
+        <div class="lists">About</div>
+        <div class="lists">Contact</div>
+        <div class="button">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+        </div>
+    </div>
+    <script>
+        let container = document.querySelector('.container');
+        let button = document.querySelector('.button');
+
+        button.addEventListener('click', function () {
+            container.classList.toggle('active')
+        })
+    </script>
+</body>
+
+</html>

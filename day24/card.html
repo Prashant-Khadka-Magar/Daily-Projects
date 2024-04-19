@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            font-family: 'Muli', sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: 100%;
+        }
+
+        .card {
+            overflow: hidden;
+            box-shadow: 0px 2px 10px black;
+            width: 300px;
+            border-radius: 10px;
+        }
+
+        #profile_img {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: .4rem;
+        }
+
+        #profile_img img {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+        
+        }
+
+        .author {
+            display: flex;
+
+        }
+
+        .card-content {
+            padding: .1rem 1rem
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+            padding-left: .5rem;
+            margin-top: .8rem;
+        }
+        #date{
+            margin-top:.8rem;
+        }
+        
+        #header{
+            height:170px;
+        }
+
+        .author-info * {
+            padding-top: .2rem
+        }
+
+        .animated-bg {
+            background-image: linear-gradient(to right,
+                    #f6f7f8 0%,
+                    #edeef1 10%,
+                    #f6f7f8 20%,
+                    #f6f7f8 100%);
+            background-size: 200% 100%;
+            animation: bgPos 1s linear infinite;
+        }
+
+        @keyframes bgPos {
+            0% {
+                background-position: 50% 0%;
+            }
+
+            100% {
+                background-position: -150% 0;
+                ;
+            }
+        }
+        .animated-bg-text{
+            height:15px;
+            width:100%;
+            display:inline-block;
+        }
+        .author-info{
+            width:50%;
+        }
+    </Style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="card-header animated-bg" id="header">
+            &nbsp;
+        </div>
+        <div class="card-content">
+            <h3 class="card-title animated-bg animated-bg-text" id="title"></h3>
+            <p class="card-excerpt" id="excerpt">
+                <span class="animated-bg animated-bg-text">&nbsp;</span>
+                <span class="animated-bg animated-bg-text">&nbsp;</span>
+                <span class="animated-bg animated-bg-text">&nbsp;</span>
+            </p>
+            <div class="author">
+                <div class="profile-img animated-bg" id="profile_img">
+                    
+                </div>
+                <div class="author-info">
+                    <strong class="animated-bg animated-bg-text" id="name">
+                        &nbsp;
+                    </strong>
+                    <small class="animated-bg animated-bg-text" id="date">
+                        &nbsp;
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         let header=document.getElementById("header");
+         let title=document.querySelector('.card-title');
+         let excerpt=document.querySelector('.card-excerpt');
+         let profileImg=document.querySelector('.profile-img');
+         let name=document.querySelector('#name');
+         let date=document.querySelector('#date');
+         let spans=document.querySelectorAll('span');
+
+         window.addEventListener('load',function(){
+            setTimeout(function(){
+                title.innerHTML='Lorem ipsum dolor sit amet.';
+                for(let i=0;i<spans.length;i++){
+                    spans[i].innerHTML='I am truely blessed to have this life';
+                    spans[i].classList.remove('animated-bg');
+                }
+                name.innerHTML='John Bones';
+                date.innerHTML='01/12/2024';
+                header.innerHTML='<img src="https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80" alt="">';
+                profileImg.innerHTML='<img src="https://cdn.dribbble.com/users/1573719/screenshots/15675086/media/460a3198328726158e47eb208f46822e.png?compress=1&resize=400x300" alt="" />';
+
+                title.classList.remove('animated-bg');
+                name.classList.remove('animated-bg');
+                date.classList.remove('animated-bg');
+
+            },3000)
+         })
+    </script>
+</body>
+
+</html>

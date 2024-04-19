@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            background-color: whitesmoke;
+            font-family: 'Muli', sans-serif;
+        }
+        .click{
+            background-color:palevioletred;
+            padding:1rem;
+            border-radius: 10px;
+            user-select: none;
+        }
+        .click:hover{
+            cursor: pointer;
+        }
+        .click:active{
+            transform: scale(0.95);
+        }
+        .results{
+            position:absolute;
+            bottom:3rem;
+            right:1rem;
+        }
+        .message{
+            padding:.2rem .5rem;
+            margin-top:.5rem;
+            border-radius: 5px;
+            color:white;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="click">
+      Show Notification
+    </div>
+    <div class="results">
+    </div>
+    <script>
+        let messages=['message 1', 'message 2', 'message 3', 'message 4'];
+        let colors=['red', 'green', 'blue', 'yellow']
+        let results=document.querySelector('.results');
+        let click=document.querySelector('.click');
+
+        click.addEventListener('click',function(){
+            let random=Math.floor(Math.random()*messages.length);
+            
+            let el=document.createElement('div');
+            el.classList.add('message');
+            results.appendChild(el);
+            el.innerHTML =messages[random];
+            el.style.backgroundColor=`${colors[random]}`;
+
+            setInterval(function(){
+                el.style.display='none';
+            },3000)
+
+        })
+
+    </script>
+</body>
+
+</html>

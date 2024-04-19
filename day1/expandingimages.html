@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expanding cards </title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+        body{
+            background: rgb(2,0,36);
+background: linear-gradient(48deg, rgba(2,0,36,1) 0%, rgba(9,120,121,1) 37%, rgba(0,212,255,1) 100%);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90vw;
+            margin: 0 auto;
+            /* set margin to auto */
+        }
+
+        .panels {
+            display: flex;
+            width: 100%;
+            height: 90vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            flex: 0.5;
+            margin: 10px;
+            border-radius: 50px;
+            position: relative;
+            transition: 2s ease-in-out;
+        }
+
+        h3 {
+            position: absolute;
+            bottom: 10px;
+            opacity: 0;
+            left: 25px;
+        }
+
+        .panels.active {
+            flex: 5;
+            transition: 2s ease-in-out;
+        }
+
+        .active h3 {
+            opacity: 1;
+            transition: 1s ease-in;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="panels "
+            style="background-image: url(https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80)">
+            <h3>Beach in Nepal</h3>
+        </div>
+        <div class="panels"
+            style="background-image: url(https://images.unsplash.com/photo-1533085089891-244cb13369b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80)">
+            <h3>Beach in Nepal</h3>
+        </div>
+        <div class="panels"
+            style="background-image: url(https://images.unsplash.com/photo-1535576264160-74e3966e8671?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=385&q=80)">
+            <h3>Beach in Nepal</h3>
+        </div>
+        <div class="panels"
+            style="background-image: url(https://images.unsplash.com/photo-1522828984268-8f9460f7ffb3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80)">
+            <h3>Beach in Nepal</h3>
+        </div>
+        <div class="panels"
+            style="background-image: url(https://images.unsplash.com/photo-1509347201499-7020cd9a59de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80)">
+            <h3>Beach in Nepal</h3>
+        </div>
+        <div class="panels"
+            style="background-image: url(https://images.unsplash.com/photo-1596550782892-01e5f0229ce7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80)">
+            <h3>Beach in Nepal</h3>
+        </div>
+    </div>
+
+
+    <script>
+        let panels = document.getElementsByClassName('panels');
+        for (let i = 0; i < panels.length; i++) {
+            panels[i].addEventListener('click', function () {
+                removeActive()
+                if(panels[i].classList.contains('active')){
+                    this.classList.remove('active');
+                }
+                else{
+                    this.classList.add('active');
+                }
+            })
+
+        }
+        function removeActive() {
+            for (let i = 0; i < panels.length; i++) {
+                panels[i].classList.remove('active')
+            }
+        }
+    </script>
+
+</body>
+
+</html>

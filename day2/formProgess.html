@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --empty-color: #e0e0e0;
+            --filled-color: #3498db;
+        }
+
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            max-width: 100%;
+            text-align: center;
+        }
+        .progessContainer {
+            display: flex;
+            width:400px;
+            max-width: 100%;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            position:relative;
+        }
+
+        .circle {
+            border: 2px solid;
+            height:30px;
+            width:30px;
+            border-color: var(--empty-color);
+            border-radius: 50%;
+            padding:5px;
+            background-color: white;
+        }
+        
+        .progess{
+            background-color: var(--filled-color);
+            width:0%;
+            height:4px;
+            position: absolute;
+            top:50%;
+            z-index:-1;
+            transition:0.5s ease;
+        }
+        .progessContainer::before{
+            content: "";
+            background-color: var(--empty-color);
+            width:100%;
+            height:4px;
+            position: absolute;
+            top:50%;
+            z-index:-1;
+        }
+        .circle.active{
+            border-color: var(--filled-color);
+        }
+        .btn:active{
+            transform: scale(0.9);
+        }
+        .btn{
+            background-color: var(--filled-color);
+            color: white;
+            display: inline-block;
+            border: none !important;
+            padding:5px;
+            border-radius: 5px;
+        }
+        .btn:focus{
+            outline:0;
+        }
+        .btn:disabled{
+            background-color: var(--empty-color);
+            cursor:not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="progessContainer">
+            <div class="progess" id="progess"></div>
+            <div class="circle active">1</div>
+            <div class="circle">2</div>
+            <div class="circle">3</div>
+            <div class="circle">4</div>
+        </div>
+        <button id="prev" class="btn" disabled>Prev</button>
+        <button id="next" class="btn">Next</button>
+    </div>
+
+    <script>
+        let progess=document.getElementById('progess');
+        let prev=document.getElementById('prev');
+        let next=document.getElementById('next');
+        let circle=document.querySelectorAll('.circle')
+        let counter=1;
+        next.addEventListener('click',function(){
+            counter++;
+            if(counter>circle.length){
+                counter=circle.length;
+            }
+            update()
+        })
+
+        prev.addEventListener('click',function(){
+            counter--;
+            if(counter<1){
+                counter=1;
+            }
+            circle[counter].classList.remove('active')
+            update()
+        })
+
+        function update(){
+        for(let i=0; i<counter; i++){
+            if(i<counter){
+                circle[i].classList.add('active')
+            }
+            else{
+                circle[i].classList.remove('active')
+            }
+        }
+        let progessPercent=(((counter-1)/(circle.length-1))*100);
+        progess.style.width= progessPercent+'%';
+
+        if(counter==1){
+            prev.disabled=true;
+        }
+        else if(counter==circle.length){
+            next.disabled=true;
+            prev.disabled=false;
+        }
+        else{
+            next.disabled=false;
+            prev.disabled=false;
+        }
+
+}
+
+    </script>
+</body>
+
+</html>

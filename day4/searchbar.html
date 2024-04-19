@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+<style>
+    .container{
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background-color:aquamarine;
+        position: relative;
+    }
+    .icon{
+        position: relative;
+    }
+    .icon i{
+        border:1px solid white;
+        padding:8px;
+        background-color: white;
+    }
+    .icon input{
+        padding:8px;
+        text-align:center;
+        font-weight: bold;
+        position:absolute;
+        z-index: -1;
+        transition: width 0.5s ease-in-out;
+        width:15px;
+    }
+    #search.hide{
+        z-index: 5;
+        width:100px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon" id="icon">
+            <i class="fa fa-search" id="font"></i>
+            <input type="search" value="search" id="search">
+        </div>
+    </div>
+
+    <script>
+        let icon=document.getElementById('icon');
+        let search=document.getElementById('search');
+        let font=document.getElementById('font');
+
+        font.addEventListener('click',function(){
+            
+            if(search.classList.contains('hide')){
+                search.classList.remove('hide');
+            }
+            else{
+                search.classList.add('hide');
+            }
+        })
+    </script>
+</body>
+</html>

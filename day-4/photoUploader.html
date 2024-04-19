@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .image {
+        height: 150px;
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="profile.avif" alt="" class="image" />
+      <input type="file" accept="image/*" class="input" />
+    </div>
+
+    <script>
+      let image = document.querySelector(".image");
+      let input = document.querySelector(".input");
+
+      let url = localStorage.getItem("url");
+      console.log(url);
+      if (url) {
+        image.src = url;
+      }
+
+      input.addEventListener("change", function () {
+        localStorage.setItem("url", URL.createObjectURL(input.files[0]));
+        image.src = localStorage.getItem("url");
+      });
+    </script>
+  </body>
+</html>

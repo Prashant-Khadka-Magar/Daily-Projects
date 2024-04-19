@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            background-color: steelblue;
+            font-family: 'Muli', sans-serif;
+            color: white;
+        }
+
+        .box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .label {
+            background-color: grey;
+            height: 40px;
+            width: 80px;
+            cursor: pointer;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toggle {
+            visibility: hidden;
+        }
+
+        .toggle:checked+label {
+            background-color: aquamarine;
+        }
+
+        .ball {
+            background-color: white;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            position: absolute;
+            left: 0px;
+            transition: .5s ease;
+
+        }
+
+        .toggle:checked+label .ball {
+            left: 40px;
+        }
+
+        h3 {
+            margin-left: 1rem;
+        }
+        .inactive.ball{
+            left: 0%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>How do you want your project to be?</h2>
+        <div class="box">
+            <input type="checkbox" class="toggle" id="my-checkbox1">
+            <label class="label" for="my-checkbox1">
+                <span class="ball"></span>
+            </label>
+            <span>
+                <h3>Good</h3>
+            </span>
+        </div>
+        <div class="box">
+            <input type="checkbox" class="toggle" id="my-checkbox2">
+            <label class="label" for="my-checkbox2">
+                <span class="ball"></span>
+            </label>
+            <span>
+                <h3>Cheap</h3>
+            </span>
+        </div>
+        <div class="box">
+            <input type="checkbox" class="toggle" id="my-checkbox3">
+            <label class="label" for="my-checkbox3">
+                <span class="ball"></span>
+            </label>
+            <span>
+                <h3>Fast</h3>
+            </span>
+        </div>
+    </div>
+
+    <script>
+        let toggle=document.querySelectorAll('.toggle');
+        let label=document.querySelectorAll('.label');
+        let ball=document.querySelectorAll('.ball');
+        let checkedBoxes=0;
+
+        for(let i=0; i<toggle.length; i++){
+            label[i].addEventListener('click',function(){
+                if(toggle[i].checked==false){
+                    checkedBoxes++;
+                }
+                else{
+                    checkedBoxes--;
+                }
+                console.log(checkedBoxes)
+                if(checkedBoxes>2){
+                    console.log('MORE THEN 2');
+                    if(i==0){
+                        toggle[2].checked=false;
+                    }
+                    toggle[i-1].checked=false;
+                    checkedBoxes--;
+                    
+                }
+            })
+
+        }
+
+    </script>
+</body>
+
+</html>

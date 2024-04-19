@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            user-select: none;
+            font-family: 'Muli', sans-serif;
+            color: rgb(255, 255, 255);
+            background-color: rgba(0, 0, 0, 0.904);
+        }
+
+        .container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0px;
+            padding: 0px;
+            font-size: 0;
+            overflow: hidden;
+            
+        }
+
+        .box {
+            height: 25px;
+            width: 25px;
+            transition:1s ease;
+            border: 1px solid white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+       
+    </div>
+
+    <script>
+        let container=document.querySelector('.container')
+        const colors = [
+            "#FF5733", "#C70039", "#900C3F", "#581845", "#0074D9",
+            "#7FDBFF", "#39CCCC", "#3D9970", "#2ECC40", "#FFDC00",
+            "#FF851B", "#FF4136", "#85144b", "#B10DC9", "#F012BE",
+            "#8B0000", "#FF1493", "#9400D3", "#4B0082", "#00FFFF"
+        ];
+
+        
+            container.addEventListener('mouseover', function () {
+                let box=document.createElement('div');
+                box.classList.add('box');
+                container.appendChild(box);
+                
+                let a=Math.floor(Math.random()*20);
+                box.style.backgroundColor=`${colors[a]}`
+            })
+            container.addEventListener('mouseout', function () {
+                setTimeout(function () {
+                    
+                    box[i].style.backgroundColor=`transparent`
+                },1500)
+            })
+
+       
+    </script>
+</body>
+
+</html>

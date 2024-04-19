@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: monospace;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(to top,
+                    pink 0%,
+                    pink 50%,
+                    paleturquoise 50%,
+                    paleturquoise 100%);
+            flex-direction: column;
+        }
+
+        .container {
+            border: 1px solid black;
+            border-radius: 50%;
+            height: 200px;
+            width: 200px;
+            background-color: white;
+            position: relative;
+            margin-bottom: 1rem;
+            transform: rotate(0deg);
+            transition: transform 2s ease;
+        }
+
+        .choice {
+            position: absolute;
+            transform: translateX(-50%);
+        }
+
+        .choice1 {
+            top: 1rem;
+            left: 50%;
+            background-color: aqua;
+        }
+
+        .choice2 {
+            bottom: 1rem;
+            left: 50%;
+            background-color: bisque;
+        }
+
+        .choice3 {
+            bottom: 50%;
+            left: 1rem;
+            background-color: steelblue;
+        }
+
+        .choice4 {
+            bottom: 50%;
+            right: 0rem;
+            transform: translateX(0%);
+            background-color: plum;
+        }
+
+        .indicate {
+            font-size: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="indicate"><i class="fa fa-arrow-down" aria-hidden="true"></i></div>
+    <div class="container">
+        <div class="choice choice1">
+            BACKEND
+        </div>
+        <div class="choice choice2">
+            FRONTEND
+        </div>
+        <div class="choice choice3">
+            UI/UX
+        </div>
+        <div class="choice choice4">
+            APP/DEVELOP
+        </div>
+    </div>
+    <button class="roll">ROLL</button>
+
+
+    <script>
+        let container = document.querySelector('.container')
+        let btn = document.querySelector('.roll');
+
+        btn.addEventListener('click', function () {
+            container.style.transition = "transform 50ms ease-in-out";
+            container.style.transform = ` rotate(0deg)`;
+            setTimeout(() => {
+                let random = Math.floor(Math.random() * 1080);
+                if(random<720){
+                    random=random+720;
+                }
+                container.style.transition = "transform 2s ease-in-out";
+                container.style.transform = ` rotate(${random}deg)`;
+                console.log(random);
+            }, 500)
+
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alkatra&family=Fasthand&family=Space+Grotesk:wght@500&display=swap');
+
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            background: rgb(42, 41, 41);
+            background: linear-gradient(47deg, rgba(42, 41, 41, 1) 41%, rgba(255, 255, 255, 1) 100%);
+        }
+
+        .container {
+            background: rgb(2, 0, 36);
+            background: linear-gradient(47deg, rgba(2, 0, 36, 1) 0%, rgba(96, 84, 84, 1) 10%, rgba(153, 225, 27, 1) 24%, rgba(0, 212, 255, 1) 61%);
+            padding: 1rem;
+            position: relative;
+            transition: transform .5s ease;
+        }
+
+        .content {
+            width: 100vw;
+            padding: 1rem;
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        .content div,
+        h1,
+        h3,
+        p {
+            margin-top: 1rem;
+        }
+
+        .picture {
+            background-image: url(https://www.pixelstalk.net/wp-content/uploads/images6/4K-Space-HD-Wallpaper-Free-download.jpg);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: 25rem;
+            width: 100%;
+        }
+
+        .circle {
+            background-color: aquamarine;
+            display: inline-block;
+            padding: 2rem;
+            height: 200px;
+            width: 200px;
+            text-align: center;
+            position: fixed;
+            border-radius: 50%;
+            top: -85px;
+            left: -160px;
+            transition: transform .5s linear;
+        }
+
+        #close {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%)
+        }
+
+        #open {
+            position: absolute;
+            top: 50%;
+            right: 5px;
+        }
+
+        ul {
+            position: fixed;
+            bottom: 2%;
+            left: 0%;
+            padding: 0;
+            list-style: none;
+            color: white;
+        }
+
+        .active .circle-container .circle {
+            transform: rotate(-70deg);
+            position: fixed;
+        }
+
+        .active.container {
+            transform: rotate(-20deg);
+            transform-origin: top left;
+        }
+
+        li {
+            margin-top: .5rem;
+            transform: translateX(-200px);
+            transition: transform 1s ease-out;
+        }
+
+        li i {
+            margin-right: .5rem;
+        }
+
+        ul.show li {
+            transform: translateX(0px);
+
+        }
+
+        .container.closed {
+            transform: rotate(0deg);
+            transform-origin: top left;
+        }
+
+        .closed .circle-container .circle {
+            transform: rotate(0deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container ">
+        <div class="circle-container">
+            <div class="circle">
+                <button id="close">
+                    <i class="fa fa-times"></i>
+                </button>
+                <button id="open">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div class="content">
+            <h1>About Space</h1>
+            <h3>What is Space?</h3>
+            <p>Space is an almost perfect vacuum, nearly void of matter and with extremely low pressure. In space, sound
+                doesn't carry because there aren't molecules close enough together to transmit sound between them. Not
+                quite empty, bits of gas, dust and other matter floats around "emptier" areas of the universe, while
+                more crowded regions can host planets, stars and galaxies.
+
+                From our Earth-bound perspective, outer space is most often thought to begin about 62 miles (100
+                kilometers) above sea level at what is known as the Kármán line. This is an imaginary boundary at an
+                altitude where there is no appreciable air to breathe or scatter light. Passing this altitude, blue
+                starts to give way to black because oxygen molecules are not in enough abundance to make the sky blue.
+            </p>
+            <div class="picture"></div>
+            <p>Humans have always looked at the heavens and wondered about the nature of the objects seen in the night
+                sky. With the development of rockets and the advances in electronics and other technologies in the 20th
+                century, it became possible to send machines and animals and then people above Earth’s atmosphere into
+                outer space. Well before technology made these achievements possible, however, space exploration had
+                already captured the minds of many people, not only aircraft pilots and scientists but also writers and
+                artists. </p>
+        </div>
+    </div>
+    <nav>
+        <ul >
+            <li><i class="fa fa-home"></i>Home</li>
+            <li><i class="fa fa-user"></i>About</li>
+            <li><i class="fa fa-envelope"></i>Contacts</li>
+        </ul>
+    </nav>
+
+    <script>
+        let container = document.querySelector('.container');
+        let close = document.getElementById('close');
+        let open = document.getElementById('open');
+        let ul = document.querySelector('ul');
+        open.addEventListener('click', function () {
+            container.classList.add('active');
+            container.classList.remove('closed');
+            ul.classList.add('show');
+        })
+        close.addEventListener('click', function () {
+            container.classList.add('closed');
+            container.classList.remove('active');
+            // ul.classList.remove('show');
+            ul.classList.remove('show');
+        })
+
+
+    </script>
+</body>
+
+</html>

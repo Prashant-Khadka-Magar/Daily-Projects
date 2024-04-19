@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+               * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body {
+            background-color: #2e2edb;
+            font-family: sans-serif;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            height:100vh;
+            flex-direction: column;
+        }
+        .button{
+            height:2rem;
+            width:6rem;
+            background-color: yellowgreen;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            border-radius: 10px;
+            border: none;
+            transition: .1s linear;
+        }
+        #output{
+            background-color:white;
+            height:50px;
+            width:200px;
+        }
+        .button:active{
+            background-color:white;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div id="output"></div>
+    <button class="button">
+        click me
+    </button>
+    <script>
+        let output = document.getElementById("output");
+        let button = document.querySelector('.button');
+        button.addEventListener("click",function(e) {
+            // const rect = button.getBoundingClientRect();
+            const x = e.clientX ;
+            const y = e.clientY ;
+
+
+            output.innerHTML = `${x}  ,  ${y}`;
+
+        })
+    </script>
+</body>
+
+</html>

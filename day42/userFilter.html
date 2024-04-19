@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        user-select: none;
+        font-family: "Muli", sans-serif;
+        flex-direction: column;
+      }
+      .container {
+        background-color: antiquewhite;
+        border-radius: 10px;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+      }
+      .header {
+        background-color: slategrey;
+        padding: 0.5rem 1rem;
+        color: white;
+      }
+      #search {
+        width: 100%;
+        padding: 0.2rem;
+        margin-top: 5px;
+        border-radius: 50px;
+        border: none;
+      }
+      input:focus {
+        outline: none;
+      }
+      ul {
+        list-style: none;
+        padding: 0.5rem;
+        height: 250px;
+        overflow-y: scroll;
+      }
+      li {
+        display: flex;
+        border-bottom: 1px solid white;
+        padding: 0.5rem;
+        cursor: pointer;
+      }
+      img {
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+      }
+      .details {
+        margin-left: 0.5rem;
+      }
+      .name {
+        font-weight: bold;
+      }
+      .hide {
+        display: none;
+      }
+      .full {
+        display: flex;
+        padding: 0.5rem;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+        background-color: white;
+        width: 350px;
+        justify-content: space-around;
+        gap: 1rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%);
+      }
+      .fullimg {
+        margin-left: 10px;
+        height: 150px;
+        width: 120px;
+        border-radius: 10px;
+      }
+      .fulldetails {
+        padding-right: 1rem;
+      }
+      button {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:active {
+        transform: scale(0.95);
+      }
+    </style>
+  </head>
+  <div class="container">
+    <div class="header">
+      <h2>Fetch user data</h2>
+      <h5>Search by Name or Locaion</h5>
+      <input type="text" id="search" placeholder="Search" />
+    </div>
+    <ul></ul>
+  </div>
+  <body>
+    <script>
+      const people = [
+        {
+          name: "Alice Smith",
+          image: `https://randomuser.me/api/portraits/women/32.jpg`,
+          location: "New York, NY",
+          job: "Software Engineer",
+          details:
+            "Alice has been working in the tech industry for over 10 years and is passionate about creating innovative solutions to complex problems.",
+        },
+        {
+          name: "Bob Johnson",
+          image: `https://randomuser.me/api/portraits/men/12.jpg`,
+          location: "San Francisco, CA",
+          job: "Product Manager",
+          details:
+            "Bob has a background in design and is skilled at balancing user needs with business goals to create successful products.",
+        },
+        {
+          name: "Charlie Lee",
+          image: `https://randomuser.me/api/portraits/men/20.jpg`,
+          location: "Chicago, IL",
+          job: "Marketing Manager",
+          details:
+            "Charlie has experience in both traditional and digital marketing and is adept at creating effective campaigns that resonate with audiences.",
+        },
+        {
+          name: "David Lee",
+          image: `https://randomuser.me/api/portraits/men/3.jpg`,
+          location: "Seattle, WA",
+          job: "Data Scientist",
+          details:
+            "David has a PhD in statistics and is an expert in analyzing large datasets to uncover insights and drive business decisions.",
+        },
+        {
+          name: "Emily Chen",
+          image: `https://randomuser.me/api/portraits/women/2.jpg`,
+          location: "Boston, MA",
+          job: "Product Designer",
+          details:
+            "Emily has a strong background in visual design and is skilled at creating beautiful and intuitive user interfaces.",
+        },
+        {
+          name: "Frank Rodriguez",
+          image: `https://randomuser.me/api/portraits/men/22.jpg`,
+          location: "Austin, TX",
+          job: "Sales Manager",
+          details:
+            "Frank is a skilled communicator with a track record of building and managing successful sales teams.",
+        },
+        {
+          name: "Grace Kim",
+          image: `https://randomuser.me/api/portraits/women/35.jpg`,
+          location: "Los Angeles, CA",
+          job: "UX Researcher",
+          details:
+            "Grace is passionate about understanding user needs and behavior through research and testing, and using those insights to inform design decisions.",
+        },
+        {
+          name: "Henry Park",
+          image: `https://randomuser.me/api/portraits/men/62.jpg`,
+          location: "Denver, CO",
+          job: "Front-end Developer",
+          details:
+            "Henry is skilled at turning design mockups into fully functional and responsive websites using HTML, CSS, and JavaScript.",
+        },
+        {
+          name: "Isabel Lopez",
+          image: `https://randomuser.me/api/portraits/women/82.jpg`,
+          location: "Miami, FL",
+          job: "Content Strategist",
+          details:
+            "Isabel is skilled at creating content that engages and educates audiences across a variety of channels, including social media, email, and blogs.",
+        },
+        {
+          name: "Jackie Chen",
+          image: `https://randomuser.me/api/portraits/men/52.jpg`,
+          location: "San Diego, CA",
+          job: "Full-stack Developer",
+          details:
+            "Jackie is skilled at building both front-end and back-end systems using a variety of technologies, including React, Node.js, and MongoDB.",
+        },
+        
+      ];
+      let ul = document.querySelector("ul");
+      let search = document.querySelector("#search");
+      let close = document.querySelector("button");
+      let body = document.body;
+      for (let i = 0; i < people.length; i++) {
+        let li = document.createElement("li");
+        li.classList.add("list");
+        li.innerHTML = `<img src="${people[i].image}" />
+        <div class="details">
+          <div class="name">${people[i].name}</div>
+          <div class="location">${people[i].location}</div>
+        </div>`;
+        ul.appendChild(li);
+        search.addEventListener("input", function (e) {
+          people.forEach((eachEl, idx) => {
+            let userInput = e.target.value;
+            if (eachEl.name.toLowerCase().includes(userInput.toLowerCase())) {
+              ul.children[idx].classList.remove("hide");
+            } else {
+              ul.children[idx].classList.add("hide");
+            }
+          });
+        });
+        for (let j = 0; j < ul.children.length; j++) {
+          ul.children[j].addEventListener("click", detailsView);
+        }
+      }
+
+      function detailsView() {
+        let index = Array.prototype.indexOf.call(
+          this.parentElement.children,
+          this
+        );
+        let full = document.createElement("div");
+        full.classList.add("full");
+        full.innerHTML = `
+    <img src="${people[index].image}" class="fullimg"/>
+    <div class="fulldetails">
+      <div class="name"><strong>Name</strong>: ${people[index].name}</div>
+      <div class="location"><strong>Location</strong>: ${people[index].location}</div>
+      <div class="job"><strong>Job</strong>: ${people[index].job}</div>
+      <div class="details"><strong>Details</strong>: ${people[index].details}</div>
+    </div>
+    <button>X</button>
+  `;
+        body.appendChild(full);
+        let button = document.querySelector("button");
+        button.addEventListener("click", function () {
+          full.remove();
+        });
+      }
+    </script>
+  </body>
+</html>

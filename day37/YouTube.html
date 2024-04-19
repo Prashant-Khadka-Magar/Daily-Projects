@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            user-select: none;
+            font-family: 'Muli', sans-serif;
+        }
+
+        .container {
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.699);
+            height: 500px;
+            width: 330px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .homeScreen {
+            height: 430px;
+            width: 100%;
+        }
+
+        .tools {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid grey;
+        }
+
+        .tool {
+            cursor: pointer;
+            padding: .1rem .5rem;
+        }
+
+        .tools div img {
+            height: 30px;
+            width: 40px;
+
+
+        }
+
+        .tools div:hover {
+            background-color: rgba(128, 128, 128, 0.301);
+
+        }
+
+        h5 {
+            margin: 0px;
+            margin-top: .2rem;;
+        }
+
+        i {
+            border: 1px solid black;
+            border-radius: 50%;
+            padding: .5rem;
+            transform: translateY(10%);
+        }
+
+        .homeScreen {
+            position: relative;
+        }
+
+        .homeScreen img {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            transition: .5s ease;
+
+        }
+
+        .active {
+            z-index: 2;
+            
+        }
+
+
+        .tool{
+            display:flex;
+            flex-direction: column;
+            justify-content:center;
+            align-items: center;
+        }
+        .running{
+            background-color: rgba(128, 128, 128, 0.301);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="homeScreen">
+            <img src="home.jpg" class="active">
+            <img src="shorts.jpg">
+            <img src="plus.jpg">
+            <img src="subscription.jpg">
+            <img src="libary.jpg">
+        </div>
+        <div class="tools">
+            <div class="home tool running"><img src="https://cdn-icons-png.flaticon.com/512/2/2144.png" alt="">
+                <h5>Home</h5>
+            </div>
+            <div class="shorts tool"><img
+                    src="https://pixlok.com/wp-content/uploads/2021/12/Youtube_shorts_icon-png-sdfj3.jpg">
+                <h5>Shorts</h5>
+            </div>
+            <div class="plus tool"><i class="fa fa-plus"></i></div>
+            <div class="subscriptions tool"><img
+                    src="https://cdn.icon-icons.com/icons2/3237/PNG/512/menu_youtube_social_media_subs_subscription_icon_197393.png"
+                    alt="">
+                <h5>Subscriptions</h5>
+            </div>
+            <div class="libary tool"><img
+                    src="https://cdn3.iconfinder.com/data/icons/video-33/24/video_library_movie_film-512.png" alt="">
+                <h5>Libary</h5>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let pictures = document.querySelectorAll('.homeScreen img');
+        let tool = document.querySelectorAll('.tool');
+        for (let i = 0; i < pictures.length; i++) {
+            tool[i].addEventListener('click', function () {
+                for(let j = 0; j < pictures.length; j++) {
+                    pictures[j].classList.remove('active');
+                    tool[j].classList.remove('running');
+                }
+                pictures[i].classList.add('active');
+                tool[i].classList.add('running');
+            })
+        }
+    </script>
+</body>
+
+</html>

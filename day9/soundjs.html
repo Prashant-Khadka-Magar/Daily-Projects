@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: monospace;
+            height: 100vh;
+            background: linear-gradient(48deg, rgb(0, 36, 11) 0%, rgb(79, 80, 25) 38%, rgba(0, 212, 255, 1) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: antiquewhite
+        }
+        .box{
+            border:1px solid rgb(187, 170, 19);
+            border-radius: 5px;
+            margin:10px;
+            padding:10px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+        <audio id="one" src="audio/0.wav"></audio>
+        <audio id="two" src="audio/1.wav"></audio>
+        <audio id="three" src="audio/2.wav"></audio>
+        <audio id="four" src="audio/3.wav"></audio>
+        <audio id="five" src="audio/4.wav"></audio>
+        <audio id="six" src="audio/5.mp3"></audio>
+
+        <div id="buttons"></div>
+    
+
+    <script>
+        let sounds=['one','two','three','four','five','six'];
+
+        sounds.forEach(function(sound){
+            let btn=document.createElement('button');
+            btn.classList.add('box');
+            btn.innerText=sound;
+
+            btn.addEventListener('click',function(){
+                document.getElementById(sound).play();
+                pause();
+            })
+
+            
+            function pause(){
+                    document.getElementById(sound).pause();
+                }
+            document.getElementById('buttons').appendChild(btn)
+
+        })
+    </script> 
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Android | Coder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * {
+            margin: 0;
+            overflow-x: hidden;
+            font-family: sans-serif;
+            text-decoration: none;
+        }
+
+        *:focus {
+            outline: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            margin-top: 10px;
+            width: 95vw;
+        }
+
+        .nav {
+            display: flex;
+            margin-left: 2px;
+        }
+        .nav div{
+            user-select: none;
+        }
+        .run {
+            margin-left: auto;
+        }
+
+        .fa-play {
+            padding-right: 4px;
+        }
+
+        .head,.head1 {
+            border: .5px solid grey;
+            padding: 5px 10px;
+            border-bottom: none;
+            cursor: pointer;
+            color:black
+        }
+
+        .codeBox {
+            height: 400px;
+            border: .5px solid grey;
+            margin: 0px 2px;
+            position: relative;
+            border-bottom: none;
+            width: 95vw;
+        }
+
+        .box {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            overflow: scroll;
+            font-size: 24px;
+            background-color: aliceblue;
+        }
+
+        .down {
+            margin-top: 15px;
+        }
+
+        #output {
+            height: 400px;
+            width: 100%;
+
+        }
+        .active {
+            z-index: 5;
+        }
+        .activeBox{
+            background-color: black;
+            color:white;
+        }
+        .run:active{
+            transform: scale(.95);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="up">
+            <div class="nav">
+                <div class="htmlHead head activeBox">HTML</div>
+                <div class="cssHead head">CSS</div>
+                <div class="jsHead head">JavaScript</div>
+                <div class="run head1" href="#output"><a href="#output"> <i class="fa-solid fa-play"></i>Run</a></div>
+            </div>
+            <div class="codeBox">
+                <textarea id="css" class="box"></textarea>
+                <textarea id="js" class="box"></textarea>
+                <textarea id="html" class="box "></textarea>
+            </div>
+        </div>
+        <div class="down">
+            <iframe id="output"></iframe>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        let html = document.querySelector('.htmlHead')
+        let css = document.querySelector('.cssHead')
+        let js = document.querySelector('.jsHead');
+        let run = document.querySelector('.run');
+        let boxes = document.querySelectorAll('.box');
+        let output= document.getElementById('output');
+        let htmlBox = document.querySelector('#html');
+        let cssBox = document.querySelector('#css');
+        let jsBox = document.querySelector('#js');
+        let heads=document.querySelectorAll('.head')
+
+
+        html.addEventListener('click', function () {
+            boxes.forEach((box) => {
+                box.classList.remove('active');
+            })
+            heads.forEach((head) => {
+                head.classList.remove('activeBox');
+            })
+            htmlBox.classList.add('active');
+            html.classList.add('activeBox')
+
+        })
+        css.addEventListener('click', function () {
+            boxes.forEach((box) => {
+                box.classList.remove('active')
+            })
+            heads.forEach((head) => {
+                head.classList.remove('activeBox');
+            })
+            cssBox.classList.add('active');
+            css.classList.add('activeBox')
+
+        })
+        js.addEventListener('click', function () {
+            boxes.forEach((box) => {
+                box.classList.remove('active')
+            })
+            heads.forEach((head) => {
+                head.classList.remove('activeBox');
+            })
+            jsBox.classList.add('active');
+            js.classList.add('activeBox')
+
+        })
+
+        run.addEventListener('click',function(){
+        let htmlValue= document.querySelector('#html').value;
+        let cssValue= document.querySelector('#css').value;
+        let jsValue= document.querySelector('#js').value;
+            
+        output.contentDocument.body.innerHTML = htmlValue+'<style>'+cssValue+'</style>';
+            output.contentWindow.eval(jsValue);
+        })
+
+      
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: monospace;
+            height: 100vh;
+            background: linear-gradient(45deg, rgb(197, 197, 197) 0%, rgb(41, 41, 41) 38%, rgb(10, 10, 10) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: antiquewhite;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .container {
+            max-width: 100%;
+            width: 50vw;
+            text-align: center;
+            background-color: rgb(66, 66, 66);
+            border-radius: 1.5rem;
+        }
+
+        .container div {
+            margin: 2rem;
+        }
+
+        #btn {
+            display: inline-block;
+            border: 1px solid rgb(87, 87, 87);
+            background-color: grey;
+            padding: 5px;
+            border-radius: 10px;
+
+        }
+
+        #btn:hover {
+            cursor: pointer;
+        }
+
+        #btn:active {
+            transform: scale(0.95)
+        }
+        #joke{
+            line-height: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h1>Get Jokes</h1>
+        </div>
+        <div id="joke">
+            What is the most played indoor sport in Nepal<br>
+            DOMESTIC VIOLENCE
+        </div>
+        <div id="btn">
+            click for random joke
+        </div>
+    </div>
+
+    <script>
+        let joke = document.getElementById("joke");
+        let btn = document.getElementById('btn');
+
+        btn.addEventListener("click", function () {
+            let config = {
+                headers: {
+                    Accept: "application/json",
+                },
+            };
+
+            fetch('https://icanhazdadjoke.com', config)
+                .then((res) => res.json())
+                .then((data) => {
+                    joke.innerHTML = data.joke
+                })
+        })
+    </script>
+</body>
+
+</html>

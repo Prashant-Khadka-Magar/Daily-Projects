@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Style>
+        :root {
+            --filled-color: #2b88f0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #3a2488;
+            font-family: monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            font-size: 1.2rem;
+
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .bigGlass {
+            width: 130px;
+            background-color: white;
+            display: inline-block;
+            text-align: center;
+            height: 200px;
+            padding: 1rem;
+            border-bottom-right-radius: 30px;
+            border-bottom-left-radius: 30px;
+            border: 2px solid rgb(0, 22, 219);
+            background-image: linear-gradient(to top, var(--filled-color) 0%, transparent 0%);
+            position:relative;
+        }
+
+        .smallGlass {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .amount {
+            background-color: white;
+            display: inline-block;
+            height: 5rem;
+            padding: 1rem;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            margin: .5rem;
+            border: 2px solid rgb(0, 22, 219);
+        }
+
+        .active {
+            background-color: var(--filled-color);
+            color: white;
+        }
+
+        .amount {
+            cursor: pointer;
+        }
+        .filledPercent{
+            position: absolute;
+            bottom:1rem;
+            left:45%;
+        }
+    </Style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="heading">
+            <h2>Drink Water</h2>
+            <h3>Goal:2 liters</h3>
+        </div>
+        <div class="bigGlass fill">
+            <div class="remaning">2 L</div>
+            <div class="rm">remaning</div>
+            <div class="filledPercent"></div>
+        </div>
+        <h3>select how many glasses you drank</h3>
+        <div class="smallGlass ">
+            <div class="amount ">250<br>ml</div>
+            <div class="amount">250<br>ml</div>
+            <div class="amount">250<br>ml</div>
+            <div class="amount">250<br>ml</div>
+            <div class="amount">250<br>ml</div>
+            <div class="amount">250<br>ml</div>
+            <div class="amount">250<br>ml</div>
+            <div class="amount">250<br>ml</div>
+        </div>
+    </div>
+
+    <script>
+        let small = document.querySelectorAll('.amount');
+        let big = document.querySelector('.bigGlass');
+        let remaning = document.querySelector('.remaning');
+        let rm = document.querySelector('.rm');
+        let filledPercent=document.querySelector('.filledPercent');
+        let amount = 2;
+        let k = null;
+        let j = null;
+        for (let i = 0; i < small.length; i++) {
+            small[i].addEventListener('click', function () {
+                // big glass color
+
+                j = (i + 1) * 12.5;
+                for(let m=0;m<=j;m++){
+                    setTimeout(function () {
+                        big.style.backgroundImage = `linear-gradient(to top, var(--filled-color) ${m}%, transparent 0%)`;
+                        console.log(m);
+                    },m*30)
+                }
+
+
+                // remaning text
+                k = amount - ((i + 1) * .25)
+                remaning.innerHTML = k + ' L';
+
+                if (k === 0) {
+                    rm.style.display = 'none';
+                    remaning.style.display = 'none';
+                }
+
+                else {
+                    rm.style.display = 'block';
+                    remaning.style.display = 'block';
+                }
+
+                // filled percent
+
+                filledPercent.innerHTML=j+'%';
+                // Small Glasses
+
+                
+                for(let l=0;l<small.length;l++){
+                    if(l<=i){
+                        small[l].classList.add('active');
+                    }
+                    else{
+                        small[l].classList.remove('active');
+                    }
+                }
+            })
+        }
+
+    </script>
+</body>
+
+</html>

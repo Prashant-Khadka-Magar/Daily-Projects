@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        button {
+            background-color: purple;
+            color: #fff;
+            border: 1px purple solid;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 20px 30px;
+            overflow: hidden;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button .circle {
+            position: absolute;
+            background-color: #fff;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: scale .5s ease-out;
+        }
+
+        @keyframes scale {
+            to {
+                transform: translate(-50%, -50%) scale(3);
+                opacity: 0;
+            }
+        }
+    </Style>
+</head>
+
+<body>
+
+    <button class="ripple">Click me
+    </button>
+
+
+    <script>
+        let button=document.querySelector('.ripple');
+
+        button.addEventListener('click',function(e){
+            let x=e.clientX;
+            let y=e.clientY;
+
+            let buttonLeft=e.target.offsetLeft;
+            let buttonTop=e.target.offsetTop;
+
+            let xInside=x-buttonLeft;
+            let yInside=y-buttonTop;
+
+            let circle=document.createElement("circle");
+            circle.classList.add('circle');
+            button.appendChild(circle);
+            circle.style.top=yInside+'px'
+            circle.style.left=xInside+'px'
+
+        })
+    </script>
+</body>
+
+</html>

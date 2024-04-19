@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      *,
+      *::before {
+        margin: 0;
+        font-family: monospace;
+      }
+      body {
+        /* height:100vh; */
+        align-items: center;
+        overflow-x: hidden;
+      }
+      .container {
+        position: relative;
+
+        width: 100%;
+        height: 100%;
+      }
+      .split {
+        position: absolute;
+        height: 100%;
+        width: 50%;
+        overflow: hidden;
+      }
+      .left {
+        background: url(https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$);
+        background-repeat: no-repeat;
+        background-size: cover;
+        left: 0;
+      }
+      .right {
+        background-image: url(https://media.wired.com/photos/5fa5dc3dba670daaf8e97a8d/master/pass/games_gear_series-x.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        right: 0;
+      }
+      .left::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        background-color: rgba(49, 35, 107, 0.7);
+      }
+      .right::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        background-color: rgba(22, 44, 33, 0.5);
+      }
+      h1 {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        white-space: nowrap;
+        color: white;
+      }
+      .btn {
+        position: absolute;
+        top: 50%;
+        left: 55%;
+        white-space: nowrap;
+        color: white;
+        border: 3px solid white;
+        padding: 1rem;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .left .btn:hover {
+        background-color: rgba(49, 35, 107, 1);
+        border-color: rgba(49, 35, 107, 1);
+      }
+      .right .btn:hover {
+        background-color: rgb(11, 22, 17);
+        border-color: rgb(11, 22, 17);
+      }
+
+      .hover-left .left {
+        width: 75%;
+      }
+      .hover-left .right {
+        width: 25%;
+      }
+      .hover-right .left {
+        width: 25%;
+      }
+      .hover-right .right {
+        width: 75%;
+      }
+      .left,
+      .right {
+        transition: width 1s linear;
+      }
+      .first,
+      .second,
+      .third {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .second {
+        background-image: url(https://cdn.mos.cms.futurecdn.net/KcQj77uqvscgnfc7ZMZuVa.jpg);
+      }
+
+      .third {
+        background-image: url(https://wallpaper.dog/large/10806422.jpg);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container first">
+      <div class="left split">
+        <h1>Playstation 5</h1>
+        <div class="btn">Buy Now</div>
+      </div>
+      <div class="right split">
+        <h1>XBox Series X</h1>
+        <div class="btn">Buy Now</div>
+      </div>
+    </div>
+    <div class="second"></div>
+    <div class="third"></div>
+    <script>
+      let container = document.querySelector(".container");
+      let left = document.querySelector(".left");
+      let right = document.querySelector(".right");
+
+      left.addEventListener("mouseover", function () {
+        container.classList.add("hover-left");
+      });
+      left.addEventListener("mouseout", function () {
+        container.classList.remove("hover-left");
+      });
+      right.addEventListener("mouseover", function () {
+        container.classList.add("hover-right");
+      });
+      right.addEventListener("mouseout", function () {
+        container.classList.remove("hover-right");
+      });
+    </script>
+  </body>
+</html>

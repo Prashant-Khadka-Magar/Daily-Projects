@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        user-select: none;
+        font-family: "Muli", sans-serif;
+        background: rgb(255, 0, 0);
+        background: linear-gradient(
+          52deg,
+          rgba(255, 0, 0, 1) 32%,
+          rgba(42, 41, 41, 1) 69%,
+          rgba(12, 14, 186, 1) 100%
+        );
+      }
+
+      .btn {
+        position: fixed;
+        top: 1rem;
+        left: 50%;
+      }
+
+      .boxes {
+        height: 500px;
+        width: 500px;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 6rem;
+      }
+
+      .boxes.big {
+        height: 600px;
+        width: 600px;
+      }
+      .boxes.big .box {
+        transform: rotate(360deg);
+      }
+
+      .box {
+        height: 125px;
+        width: 125px;
+        background-image: url(https://media3.giphy.com/media/d9QiBcfzg64Io/200w.webp?cid=ecf05e47dpvp5yshgs51io7ne01jcnashs71nfpugjlqjf1q&rid=200w.webp&ct=g);
+        background-repeat: no-repeat;
+        position: relative;
+        background-size: 500px 500px;
+        transition: transform 0.5s ease;
+      }
+      .box::after {
+        content: "";
+        background-color: grey;
+        position: absolute;
+        right: -15px;
+        top: 8px;
+        height: 100%;
+        width: 15px;
+        transform: skewY(45deg);
+      }
+      .box::before {
+        content: "";
+        background-color: grey;
+        position: absolute;
+        left: 8px;
+        bottom: -15px;
+        width: 100%;
+        height: 15px;
+        transform: skewX(45deg);
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="btn">MAGIC</button>
+
+    <div id="boxes" class="boxes"></div>
+
+    <script>
+      let boxes = document.querySelector(".boxes");
+      let btn = document.querySelector(".btn");
+      for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+          let box = document.createElement("div");
+          box.classList.add("box");
+          boxes.appendChild(box);
+          box.style.backgroundPosition = `${j * -125}px ${i * -125}px`;
+        }
+      }
+      btn.addEventListener("click", function () {
+        boxes.classList.toggle("big");
+      });
+    </script>
+  </body>
+</html>

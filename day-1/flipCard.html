@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        *,
+        *::before {
+            box-sizing: border-box;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            user-select: none;
+            font-family: 'Muli', sans-serif;
+            flex-direction: column;
+        }
+
+        .container {
+            height: 280px;
+            width: 200px;
+            margin-bottom: 1rem;;
+        }
+        
+        .card {
+            border-radius: 1rem;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+            height: 100%;
+            width: 100%;
+            position: relative;
+            transition: transform 1s ease;
+            transform-style: preserve-3d;
+        }
+
+        .face {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            backface-visibility: hidden;
+            border-radius: 1rem;
+        }
+
+        .front {
+            background-image: url(https://scontent.fbhr1-1.fna.fbcdn.net/v/t39.30808-6/311793734_849309706255384_6231005212034018293_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=a4a2d7&_nc_ohc=ygcVCxQP8VkAX8ef24t&_nc_ht=scontent.fbhr1-1.fna&oh=00_AfB34guePlT065YwHXjCXkNXABb8S9h3wADeuvrmz3X77A&oe=643D550D);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .back {
+            transform: rotateY(180deg);
+            padding:1rem;
+            border:1px solid black;
+            background-color:floralwhite;
+        }
+
+        .magic {
+            transform: rotateY(180deg);
+        }
+        .back *{
+            padding:.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="front face">Prashant Magar</div>
+            <div class="back face">
+                <h3>Social links</h3>
+                <ul>
+                    <li><i class="fa-brands fa-facebook-f"></i>Facebook</li>
+                    <li><i class="fa-brands fa-twitter"></i>Twitter</li>
+                    <li><i class="fa-brands fa-github"></i>Github</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <button class="btn">Click For Socials</button>
+    <script>
+        let card = document.querySelector('.card')
+        document.querySelector('.btn').addEventListener('click', function () {
+            card.classList.toggle('magic')
+        })
+    </script>
+</body>
+
+</html>

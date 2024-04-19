@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        user-select: none;
+        font-family: "Muli", sans-serif;
+      }
+      .box {
+        position: relative;
+      }
+      .output {
+        position: absolute;
+        left:50%;
+        top:-200%;
+        transform: translateX(-50%);
+        background-color: steelblue;
+        padding:.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <input type="range" min="0" max="100" class="value" />
+      <div class="output">50</div>
+    </div>
+    <script>
+      let value = document.querySelector(".value");
+      let output = document.querySelector(".output");
+      value.addEventListener("input", function () {
+        let outputNumber = value.value;
+        output.innerHTML = outputNumber;
+        output.innerHTML = outputNumber;
+        output.style.left = `${outputNumber}%`;
+        console.log(outputNumber);
+      });
+    </script>
+  </body>
+</html>

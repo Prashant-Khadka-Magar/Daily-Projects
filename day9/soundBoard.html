@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: monospace;
+            height: 100vh;
+            background: linear-gradient(48deg, rgb(0, 36, 11) 0%, rgb(79, 80, 25) 38%, rgba(0, 212, 255, 1) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: antiquewhite
+        }.container{
+            display:flex;
+
+        }
+        .box{
+            border:1px solid rgb(187, 170, 19);
+            border-radius: 5px;
+            margin:10px;
+            padding:10px;
+            cursor:pointer;
+        }
+        .box:active{
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"><h2>click</h2></div>
+        <div class="box"><h2>click</h2></div>
+        <div class="box"><h2>click</h2></div>
+        <div class="box"><h2>click</h2></div>
+        <div class="box"><h2>click</h2></div>
+        <div class="box"><h2>click</h2></div>
+    </div>
+    
+    <script>
+        let sounds=['audio/0.wav','audio/1.wav','audio/2.wav','audio/3.wav','audio/4.wav','audio/5.mp3']
+        let box=document.querySelectorAll('.box');
+        let currentAudio=null;
+        for(let i=0;i<box.length;i++){
+            box[i].addEventListener('click',function(){
+                if(currentAudio){
+                    currentAudio.pause()
+                }
+                let audio= new Audio(sounds[i]);
+                currentAudio=audio;
+                audio.play();
+            })
+        }
+        
+        
+
+    </script>
+</body>
+</html>

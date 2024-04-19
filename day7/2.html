@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            font-family: monospace;
+        }
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        .container{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            width:100%;
+            height:100%;
+        }
+        .photo{
+            height:100%;
+            width:50%;
+            background-size: cover;
+            background-position: center;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction: column;
+            color:azure;
+            font-size: 1.5rem;
+            transition:width 1s ease-in-out;
+            position: relative;
+        }
+        .buy{
+            border:2px solid white;
+            padding:5px;
+            margin-top: 10px;
+        }
+        .left{
+            background-image: url(https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$);
+            color:black;
+            
+        }
+        .left .buy{
+            border:2px solid rgb(0, 0, 0);
+        }
+        .right{
+            background-image: url(https://media.wired.com/photos/5fa5dc3dba670daaf8e97a8d/master/pass/games_gear_series-x.jpg);
+        }
+        .active{
+            width:90%;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left photo">
+            <h1>Playstation 5</h1>
+            <div class="buy">Buy Now</div>
+        </div>
+        <div class="right photo">
+            <h1>XBox Series X</h1>
+            <div class="buy">Buy Now</div>
+        </div>
+    </div>
+    <script>
+        let photo=document.querySelectorAll('.photo');
+
+        for(let i=0; i<photo.length; i++){
+            photo[i].addEventListener('mouseover',function(){
+                this.classList.add('active');
+            })
+            photo[i].addEventListener('mouseout',function(){
+                this.classList.remove('active');
+            })
+        }
+   
+    </script>
+</body>
+
+</html>

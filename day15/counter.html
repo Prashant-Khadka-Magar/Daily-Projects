@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: monospace;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: blueviolet;
+            color: white;
+            flex-direction: column;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+            text-align: center;
+        }
+
+        .fa,
+        .counter {
+            font-size: 3rem;
+        }
+
+        .desc {
+            font-size: 1rem;
+        }
+
+
+        @media (max-width:600px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .container div {
+                margin-top: 1rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+   
+    <div class="container">
+        <div class="twitter">
+            <i class="fa fa-twitter"></i>
+            <div class="counter twcounter">0</div>
+            <div class="desc">Twitter Followers</div>
+        </div>
+        <div class="youtube">
+            <i class="fa fa-youtube"></i>
+            <div class="counter ytcounter">0</div>
+            <div class="desc">Youtube Subscribers</div>
+        </div>
+        <div class="facebook">
+            <i class="fa fa-facebook"></i>
+            <div class="counter fbcounter">0</div>
+            <div class="desc">Facebook Followers</div>
+        </div>
+    </div>
+
+
+    <script>
+        let counter = document.querySelectorAll('.counter');
+        let fbcounter = document.querySelector('.fbcounter');
+        let ytcounter = document.querySelector('.ytcounter');
+        let twcounter = document.querySelector('.twcounter');
+        window.onload = function () {
+            for (let i = 0; i <= 2400; i++) {
+                setTimeout(function () {
+                    fbcounter.innerHTML = i;
+                }, i * 1)
+            }
+            for (let i = 0; i <= 3000; i++) {
+                setTimeout(function () {
+                    ytcounter.innerHTML = i;
+                }, i * 1)
+            }
+            for (let i = 0; i <= 1500; i++) {
+                setTimeout(function () {
+                    twcounter.innerHTML = i;
+                }, i * 1)
+            }
+        }
+
+    </script>
+</body>
+
+</html>

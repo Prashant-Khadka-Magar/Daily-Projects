@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        font-family: "Muli", sans-serif;
+        background-color: antiquewhite;
+        font-weight: bold;
+        flex-direction: column;
+      }
+      ul {
+        list-style: none;
+      }
+      .container {
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+        padding: 1rem;
+        height: 300px;
+        width: 400px;
+        position: relative;
+        background-color: white;
+      }
+      .container * {
+        padding: 0.5rem;
+      }
+      input {
+        cursor: pointer;
+      }
+      .submit {
+        width: 100%;
+        cursor: pointer;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border: none;
+        padding: 0.5rem;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+      }
+      .submit:active {
+        transform: scale(0.95);
+      }
+      .output {
+        margin-top:1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2 class="question">Quesition of Options</h2>
+      <ul>
+        <li>
+          <input type="radio" name="answer" id="a" class="answer" />
+          <label for="a" id="a_text">Answer1</label>
+        </li>
+        <li>
+          <input type="radio" name="answer" id="b" class="answer" />
+          <label for="b" id="b_text">Answer2</label>
+        </li>
+        <li>
+          <input type="radio" name="answer" id="c" class="answer" />
+          <label for="c" id="c_text">Answer3</label>
+        </li>
+        <li>
+          <input type="radio" name="answer" id="d" class="answer" />
+          <label for="d" id="d_text">Answer4</label>
+        </li>
+      </ul>
+      <input type="submit" class="submit" id="submit" />
+    </div>
+    <div class="output"></div>
+    <script>
+      const gk = [
+        {
+          question: "What is the capital of France?",
+          a: "Berlin",
+          b: "Paris",
+          c: "Rome",
+          d: "Madrid",
+          correct: "b",
+        },
+        {
+          question: "What is the largest country in the world?",
+          a: "China",
+          b: "Russia",
+          c: "Canada",
+          d: "United States",
+          correct: "b",
+        },
+        {
+          question: "What is the highest mountain in the world?",
+          a: "Mount Everest",
+          b: "K2",
+          c: "Kangchenjunga",
+          d: "Lhotse",
+          correct: "a",
+        },
+        {
+          question: "Who invented the telephone?",
+          a: "Alexander Graham Bell",
+          b: "Thomas Edison",
+          c: "Nikola Tesla",
+          d: "Guglielmo Marconi",
+          correct: "a",
+        },
+        {
+          question: "What is the chemical symbol for gold?",
+          a: "Go",
+          b: "Au",
+          c: "Ag",
+          d: "Cu",
+          correct: "b",
+        },
+      ];
+      let container = document.querySelector(".container");
+      let question = document.querySelector(".question");
+      let answer = document.querySelectorAll(".answer");
+      let submit = document.querySelector("#submit");
+      let a_text = document.querySelector("#a_text");
+      let b_text = document.querySelector("#b_text");
+      let c_text = document.querySelector("#c_text");
+      let d_text = document.querySelector("#d_text");
+      let output=document.querySelector(".output");
+
+      let score = 0;
+      let currentBox = 0;
+      question.innerHTML = gk[currentBox].question;
+      a_text.innerHTML = gk[currentBox].a;
+      b_text.innerHTML = gk[currentBox].b;
+      c_text.innerHTML = gk[currentBox].c;
+      d_text.innerHTML = gk[currentBox].d;
+      
+      let wronganswers="";
+      submit.addEventListener("click", function () {
+        if (!Array.from(answer).some((radio) => radio.checked)) {
+          alert("Please select an answer.");
+          return;
+        }
+        let selectedAnswer = "";
+        for (let i = 0; i < answer.length; i++) {
+          if (answer[i].checked) {
+
+            selectedAnswer = answer[i].id;
+            if (selectedAnswer === gk[currentBox].correct) {
+              score++;
+            }
+            if(selectedAnswer != gk[currentBox].correct){
+              wronganswers+=currentBox;
+            }
+          }
+        }
+        
+        currentBox++;
+        if (currentBox < gk.length) {
+          question.innerHTML = gk[currentBox].question;
+          a_text.innerHTML = gk[currentBox].a;
+          b_text.innerHTML = gk[currentBox].b;
+          c_text.innerHTML = gk[currentBox].c;
+          d_text.innerHTML = gk[currentBox].d;
+        } else {
+          let scoreBoard = `<h1 class='score'>You Scored ${score} Out of ${gk.length}</h1>
+          <button class='submit' id='reload'>Reload</button>`;
+          container.innerHTML = scoreBoard;
+          document
+          .getElementById("reload")
+          .addEventListener("click", function () {
+            location.reload();
+          });
+          output.innerHTML=` Answer of "${gk[wronganswers].question}" was  wrong
+          the correct answer is "${gk[wronganswers].correct}"`;
+          console.log(gk[wronganswers].question)
+        }
+
+        for (let j = 0; j < answer.length; j++) {
+          answer[j].checked = false;
+        }
+      });
+    </script>
+  </body>
+</html>

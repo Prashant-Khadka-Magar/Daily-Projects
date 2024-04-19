@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: monospace;
+            height: 100vh;
+            background: linear-gradient(45deg, rgb(187, 187, 187) 0%, rgb(34, 34, 34) 50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: antiquewhite;
+            font-weight: bold;
+            font-size: 1rem;
+            flex-direction: column;
+        }
+
+        .container {
+
+            display: none;
+
+        }
+
+        .container div {
+            font-size: 1.5rem;
+            margin: 10px;
+        }
+
+        .key {
+            color: black;
+            padding: 5px;
+            margin: 10px;
+            background-color: aliceblue;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        #btn {
+            padding: 1rem;
+            margin-top: 10px;
+            border: 2px solid black;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            ;
+        }
+
+        #btn:active {
+            transform: scale(0.95);
+        }
+
+        .active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .hide {
+            display: none;
+        }
+
+       
+    </style>
+</head>
+
+<body>
+    <div class="container ">
+        <div class="box">
+            event.key
+            <div class="key keyEvent">
+                
+            </div>
+        </div>
+        <div class="box">
+            event.keyCode
+            <div class="key keyCode">
+                
+            </div>
+        </div>
+        <div class="box">
+            event.code
+            <div class="key code">
+                
+            </div>
+        </div>
+    </div>
+    <button id="btn">
+        Press any key to get the Key code
+    </button>
+    
+
+    <script>
+        let key = document.querySelector('.keyEvent');
+        let keyCode = document.querySelector('.keyCode');
+        let code = document.querySelector('.code');
+        let container = document.querySelector('.container');
+      
+
+        window.addEventListener("keydown", function (a) {
+            container.classList.add('active');
+            document.getElementById('btn').classList.add('hide')
+            if (a.key == " ") {
+                key.innerHTML = 'space'
+                keyCode.innerHTML = a.keyCode;
+                code.innerHTML = a.code;
+            }
+            else {
+                key.innerHTML = a.key
+                keyCode.innerHTML = a.keyCode;
+                code.innerHTML = a.code;
+            }
+          
+        })
+       
+    </script>
+</body>
+
+</html>

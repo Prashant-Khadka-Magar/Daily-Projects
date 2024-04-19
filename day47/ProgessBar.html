@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        user-select: none;
+        font-family: "Muli", sans-serif;
+        background-color: antiquewhite;
+        font-weight: bold;
+      }
+      .container {
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+        background-color: steelblue;
+        padding: 1rem;
+        width: 400px;
+        color: white;
+      }
+      .img {
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+      }
+      .author {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+      }
+      .progessBar {
+        height: 5px;
+        width: 100%;
+        background-color: white;
+        border-radius: 50px;
+        margin-bottom: 0.5rem;
+        animation: grow 10s linear infinite;
+        transform-origin: left;
+      }
+      @keyframes grow {
+        0% {
+          transform: scaleX(0%);
+        }
+        to {
+          transform: scaleX(100%);
+        }
+      }
+      .author_details {
+        margin-left: 0.5rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="progessBar"></div>
+      <div class="review">
+        <p></p>
+      </div>
+      <div class="author">
+        <div class="author_img">
+          <img src="" alt="" class="img" />
+        </div>
+        <div class="author_details">
+          <div class="name"></div>
+          <div class="job"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const userData = [
+        {
+          name: "John Doe",
+          profession: "Software Engineer",
+          image:
+            "https://www.speakeragency.com.tr/media/zwtdhd2k/575px_510px-2.jpg",
+          review:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at justo euismod, bibendum ex ac, vehicula nulla. Duis id nisl finibus, vehicula nisi ac, sagittis ipsum. Nullam nec pulvinar quam, in bibendum sem.",
+        },
+        {
+          name: "Jane Smith",
+          profession: "Graphic Designer",
+          image:
+            "https://qph.cf2.quoracdn.net/main-qimg-9917b67736a5ee3895ea29555a20d6c7-lq",
+          review:
+            "Phasellus sed faucibus turpis. Donec eu quam risus. Fusce pretium, tortor vitae vestibulum viverra, quam ex accumsan velit, eget imperdiet ante velit non enim.",
+        },
+        {
+          name: "Bob Johnson",
+          profession: "Marketing Manager",
+          image: "https://limn.it/wp-content/uploads/2010/12/RobertMorris.png",
+          review:
+            "Etiam vel tristique magna. Duis hendrerit purus et libero fringilla, non semper nulla suscipit. Fusce sodales urna ac sapien malesuada, ac gravida quam suscipit.",
+        },
+        {
+          name: "Bobby fisher",
+          profession: "Chess Genius",
+          image:
+            "https://hips.hearstapps.com/hmg-prod/images/bobby-fischer-gettyimages-495892222.jpg?crop=1xw:0.5625xh;center,top&resize=1200:*",
+          review:
+            "Phasellus sed faucibus turpis. Donec eu quam risus. Fusce pretium, tortor vitae vestibulum viverra, quam ex accumsan velit, eget imperdiet ante velit non enim.",
+        },
+      ];
+      let objectNum = 0;
+      let progessBar = document.querySelector(".progessBar");
+      let p = document.querySelector(".review p");
+      let img = document.querySelector(".img");
+      let name = document.querySelector(".name");
+      let job = document.querySelector(".job");
+
+      p.innerHTML = userData[objectNum].review;
+      img.src = userData[objectNum].image;
+      name.innerHTML = userData[objectNum].name;
+      job.innerHTML = userData[objectNum].profession;
+
+      let change = setInterval(function () {
+        if (objectNum >= userData.length - 1) {
+          objectNum = -1;
+        }
+        objectNum++;
+        console.log(objectNum);
+        p.innerHTML = userData[objectNum].review;
+        img.src = userData[objectNum].image;
+        name.innerHTML = userData[objectNum].name;
+        job.innerHTML = userData[objectNum].profession;
+      }, 10000);
+    </script>
+  </body>
+</html>

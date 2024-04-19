@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        *,
+        *::before {
+            box-sizing: border-box;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow-x: hidden;
+            margin: 0;
+            user-select: none;
+            font-family: 'Muli', sans-serif;
+            flex-direction: column;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100vw;
+            overflow: auto;
+        }
+
+        .page {
+            height: 100%;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .first {
+            background-image: url(https://library.sportingnews.com/2021-08/cormier-miocic-ufc-241_mhdmnmyle8le1e58far0d0hly.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .second {
+            background-image: url(https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/08/18/08/UFC-241-1.jpg);
+        }
+
+        .third {
+            background-image: url(https://img.bleacherreport.net/img/images/photos/003/787/683/hi-res-e973e9e890cd8c84bc63463c058e6391_crop_north.jpg?1548272055&w=3072&h=2048)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="first  page">
+
+        </div>
+        <div class="second page"></div>
+        <div class="third page"></div>
+    </div>
+
+    <script>
+        let page = document.querySelectorAll('.page');
+        let body=document.body;
+        body.addEventListener('scroll', function() {
+            for (let i = 0; i < page.length; i++) {
+                let boxHeight = page[i].getBoundingClientRect().top;
+
+                console.log(boxHeight);
+            }
+            console.log(fired)
+        })
+        window.addEventListener('scroll', function() {
+  console.log('User has scrolled!');
+});
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Muli', sans-serif;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .container {
+            height: 300px;
+            width: 200px;
+            box-shadow: 0px 10px 10px black;
+            margin-top: 2rem;
+            background-image: url(https://wallpapershome.com/images/wallpapers/blade-runner-2049-2160x3840-ana-de-armas-4k-16077.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        .heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            color: red;
+            transform: scale(0);
+            animation: heart .5s ease-in-out;
+        }
+
+        @keyframes heart {
+            to {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+        i{
+            color:red;
+        }
+        .count{
+            color:red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h2>Double click to <i class="fa-solid fa-heart"></i> it
+        </h2>
+        <h4>you liked it <span class="count"> 0 </span> times</h4>
+    </div>
+    <div class="container">
+
+    </div>
+
+    <script>
+        let container = document.querySelector('.container');
+        let count = document.querySelector('.count');
+        let counter=0;
+        container.addEventListener("dblclick", function (e) {
+            counter++;
+            let x = e.clientX;
+            let y = e.clientY;
+
+            let buttonLeft = e.target.offsetLeft;
+            let buttonTop = e.target.offsetTop;
+
+            let a = (y - buttonTop) / container.offsetHeight * 100;
+            let b = (x - buttonLeft) / container.offsetWidth * 100;
+            console.log(a, b);
+
+            let heart = document.createElement('span');
+            heart.classList.add('heart');
+            heart.innerHTML = `<i class="fa-solid fa-heart"></i>`;
+            heart.style.top = a + '%'
+            heart.style.left = b + '%'
+            container.appendChild(heart);
+            count.innerHTML=counter;
+        })
+
+
+
+    </script>
+</body>
+
+</html>

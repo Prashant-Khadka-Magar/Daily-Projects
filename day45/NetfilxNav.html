@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        user-select: none;
+        font-family: "Muli", sans-serif;
+      }
+      .container {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+        position: relative;
+      }
+      .image {
+        background-image: url(https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png);
+        height: 150px;
+        width: 350px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      .layer {
+        height: 100vh;
+        width: 300px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: transform 0.3s ease;
+        transform: translateX(-500px);
+      }
+      .black {
+        background-color: black;
+        width: 340px;
+      }
+      .red {
+        background-color: red;
+        width: 320px;
+      }
+      .text {
+        background-color: rgb(255, 255, 255);
+        padding:20px;
+        font-weight: bold;
+      }
+      .btn{
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        font-size:1.5rem;
+      }
+      img{
+        height:50px;
+        width:150px;
+      }
+      .text div{
+        margin-top: 10px;
+      }
+      ul{
+        list-style: none;
+      }
+      li{
+        padding:5px 0;
+      }
+      .hamCross{
+        position:absolute;
+        top:10px;
+        right:10px;
+      }
+      .hamMenu{
+        position:fixed;
+        top:10px;
+        left:10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button class="hamMenu btn"><i class="fa fa-bars"></i></button>
+      <div class="image"></div>
+      <div class="nav">
+        <div class="black layer"></div>
+        <div class="red layer"></div>
+        <div class="text layer">
+          <button class="hamCross btn"><i class="fa fa-close"></i></button>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="">
+          <div>Teams</div>
+          <div>Locations</div>
+          <div>Life At Netflix</div>
+          <ul>
+            <li>Netflix Culture Memo</li>
+            <li>Work Life Balance</li>
+            <li>Inclusive And Diversity</li>
+            <li>Blog</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script>
+      let menu = document.querySelector(".hamMenu");
+      let cross = document.querySelector(".hamCross");
+      let layer = document.querySelectorAll(".layer");
+      // let i=0;
+      menu.addEventListener("click", function () {
+        for (let i = 0; i < layer.length; i++) {
+          setTimeout(function () {
+            layer[i].style.transform = `translateX(0%)`;
+          }, 200 * i);
+        }
+      });
+      cross.addEventListener('click', function(){
+        for (let j = layer.length-1; j >= 0; j--) {
+          setTimeout(function () {
+            layer[j].style.transform = `translateX(-500px)`;
+          }, 200 * (layer.length - j - 1));
+        }
+      })
+    </script>
+  </body>
+</html>

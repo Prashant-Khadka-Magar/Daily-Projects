@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+        }
+
+        .picture {
+            height: 100%;
+            transition: transform 1s ease-in-out;
+        }
+
+        .left {
+            width: 30%;
+            transform: translateY(-300%);
+        }
+
+        .right {
+            width: 70%;
+            transform: translateY(0%);
+        }
+
+        .rightimg {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height:100%;
+        }
+
+        .rightone {
+            background-image: url(https://images.unsplash.com/photo-1608592077365-c6399182e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);
+            
+        }
+
+        .righttwo {
+            background-image: url(https://plus.unsplash.com/premium_photo-1669307748994-970d24880ff3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=971&q=80);
+            
+        }
+        .rightthree {
+            background-image: url(https://images.unsplash.com/photo-1519832979-6fa011b87667?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=853&q=80);
+            
+        }
+        .rightfour {
+            background-image: url(https://images.unsplash.com/photo-1471922694854-ff1b63b20054?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80);
+            
+        }
+
+        .leftone {
+            background-color: aquamarine;
+        
+        }
+
+        .lefttwo {
+            background-color: rgb(163, 255, 127);
+            
+            
+        }
+        .leftthree {
+            background-color:steelblue;
+            
+        }
+        .leftfour{
+            background-color:greenyellow
+        }
+        .leftimg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            height:100%;
+        }
+        .arrow{
+            display:inline;
+            position: fixed;
+            top:52%;
+            font-size: 1.5rem;
+        }
+        .up{
+            left:30.5%;
+        }
+        .down{
+            right:70.5%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left picture">
+        <div class="leftimg leftfour">BEACH IN CHINA</div>
+        <div class="leftimg leftthree">BAY IN CANADA</div>
+        <div class="leftimg lefttwo">HILL IN MANHATON</div>
+        <div class="leftimg leftone">CHURCH IN AN ISLAND</div>
+    </div>
+    <div class="right picture">
+        <div class="rightimg rightone"></div>
+        <div class="rightimg righttwo"></div>
+        <div class="rightimg rightthree"></div>
+        <div class="rightimg rightfour"></div>
+    </div>
+    <button class="up arrow"><i class="fas fa-arrow-up"></i></button>
+    <button class="down arrow"><i class="fas fa-arrow-down"></i></button>
+
+
+    <script>
+        let up=document.querySelector('.up');
+        let down=document.querySelector('.down');
+        let right=document.querySelector('.right');
+        let left=document.querySelector('.left');
+        let leftlevel=-300;
+        let rightlevel=0;
+        up.addEventListener('click',function(){
+            leftlevel=leftlevel+100;
+            rightlevel=rightlevel-100;
+            if(rightlevel<-300){
+                left.style.transform=`translateY(${-300}%)`;
+                right.style.transform=`translateY(${0}%)`;
+                leftlevel=-300;
+                rightlevel=0;
+            }else{
+            left.style.transform=`translateY(${leftlevel}%)`;
+            right.style.transform=`translateY(${rightlevel}%)`;}
+        })
+        down.addEventListener('click',function(){
+            leftlevel=leftlevel-100;
+            rightlevel=rightlevel+100;
+            if(leftlevel<-300){
+                left.style.transform=`translateY(${0}%)`;
+                right.style.transform=`translateY(${-300}%)`;
+                leftlevel=0;
+                rightlevel=-300;
+            }
+            else{
+            left.style.transform=`translateY(${leftlevel}%)`;
+            right.style.transform=`translateY(${rightlevel}%)`;
+            }
+            console.log(leftlevel);
+            console.log(rightlevel);
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: monospace;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .box {
+            border: 1px solid grey;
+            margin: 2rem;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0px 4px 5px 1px;
+        }
+
+        .color {
+            background: rgb(2, 0, 36);
+            background: linear-gradient(48deg, rgba(2, 0, 36, 1) 0%, rgb(184, 184, 184) 10%, rgb(184, 184, 184) 89%);
+        }
+
+        h3 {
+            display: inline;
+        }
+
+        .head {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            margin-top: 2rem;
+            max-width:450px;
+        }
+
+        p {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .buttons {
+            font-size: 1.5rem;
+            position: relative;
+
+        }
+
+        .icons {
+            position: absolute;
+            left: -1.5rem;
+            font-size: 24px;
+            color: rgb(12, 12, 12) ;
+            background-color: rgb(255, 255, 255) ;
+            width: 30px;
+            text-align: center;
+        }
+        .one{
+            background-color:transparent;
+            color: rgb(255, 255, 255) ;
+        }
+        
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        <div class="box ">
+            <div class="head">
+                <h3> What are meta tags in HTML ?</h3>
+                <div class="buttons">
+                    <i class="fa fa-window-close icons one "></i>
+                    <i class="fa fa-angle-down icons two "></i>
+                </div>
+            </div>
+            <p class="p ">Meta tags are those tags which go inside the Head tag of the HTML page</p>
+        </div>
+        <div class="box ">
+            <div class="head">
+                <h3>What is load balancing?</h3>
+                <div class="buttons">
+                    <i class="fa fa-window-close icons one"></i>
+                    <i class="fa fa-angle-down icons two "></i>
+                </div>
+            </div>
+            <p class="p ">Load balancing is distribution of all the incoming network traffic all across the backend servers.</p>
+        </div>
+        <div class="box ">
+            <div class="head">
+                <h3>What npm stands for ?</h3>
+                <div class="buttons">
+                    <i class="fa fa-window-close icons one"></i>
+                    <i class="fa fa-angle-down icons two "></i>
+                </div>
+            </div>
+            <p class="p ">Npm stands for Node Package Manager.</p>
+        </div>
+        <div class="box ">
+            <div class="head">
+                <h3>How are JavaScript and jQuery different?</h3>
+                <div class="buttons">
+                    <i class="fa fa-window-close icons one"></i>
+                    <i class="fa fa-angle-down icons two "></i>
+                </div>
+            </div>
+            <p class="p ">JQuery is a library built with the JavaScript language, and JavaScript is the language itself. </p>
+        </div>
+        <div class="box ">
+            <div class="head">
+                <h3>What is IIFEs?</h3>
+                <div class="buttons">
+                    <i class="fa fa-window-close icons one"></i>
+                    <i class="fa fa-angle-down icons two "></i>
+                </div>
+            </div>
+            <p class="p ">IIFEs stands for Immediately-Invoked Function Expression. This executes immediately after you create it</p>
+        </div>
+
+    </div>
+
+    <script>
+        let paragraph = document.querySelectorAll('.p');
+        let icons = document.querySelectorAll('.icons')
+        let buttons = document.querySelectorAll('.buttons');
+        let box=document.querySelectorAll('.box')
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', function () {
+                box[i].classList.toggle('color')
+                paragraph[i].classList.toggle('active');
+                let two = buttons[i].querySelector('.two')
+                if (paragraph[i].classList.contains('active')) {
+                    two.classList.add('hide');
+                }
+                else {
+                    two.classList.remove('hide');
+                }
+            })
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>

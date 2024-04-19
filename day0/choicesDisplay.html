@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: monospace;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .options {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <label>Enter your choices</label>
+    <input type="text" class="text">
+    <div class="results"></div>
+
+    <script>
+        let text = document.querySelector('.text')
+        let results = document.querySelector('.results')
+
+        text.addEventListener('keyup', function () {
+            let choices = text.value;
+            let splited = choices.split(',')
+            results.innerHTML = '';
+
+            for (let i = 0; i < splited.length; i++) {
+                let a = document.createElement('div');
+                a.innerText = splited[i];
+                a.classList.add('options');
+                results.appendChild(a)
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>

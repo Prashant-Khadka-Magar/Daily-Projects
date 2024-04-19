@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Muli', sans-serif;
+            flex-direction: column;
+            text-align: center;
+            background-color: aquamarine;
+        }
+
+        div{
+            position:absolute;
+            bottom:2rem;
+            left:50%;
+            transform: translateX(-50%);
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1 id="text">Starting..</h1>
+
+    <div>
+        <label for="speed">Speed:</label>
+        <input type="number" name="speed" id="speed" value="1" min="1" max="10" step="1">
+    </div>
+    <script>
+        let textEl=document.getElementById("text");
+        let speedEl=document.getElementById("speed");
+        let text='I love My Life!';
+        let idx=1;
+        let speed=400/speedEl.value;
+
+        run();
+
+        function run(){
+            textEl.innerHTML = text.slice(0,idx);
+
+            idx++;
+            if(idx>text.length){
+                idx=1;
+            }
+
+            setTimeout(run,speed)
+        }
+        speedEl.addEventListener("input",function(e){
+            speed=400/e.target.value;
+            console.log(speed);
+        })
+
+        
+    </script>
+</body>
+
+</html>

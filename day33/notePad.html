@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: auto;
+            margin: 0;
+            user-select: none;
+            background-color: steelblue;
+            font-family: 'Muli', sans-serif;
+            color: white;
+            flex-wrap: wrap;
+        }
+
+        .add {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .note {
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.568);
+            height: 250px;
+            width: 200px;
+            overflow: hidden;
+            margin: 1rem;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        textarea {
+            padding: 0;
+            margin: 0;
+            outline: none;
+            border: none;
+            padding: .5rem;
+            height: 100%;
+            width: 100%;
+        }
+
+        textarea:focus {
+            outline: none;
+        }
+
+        .tools {
+            background-color: yellowgreen;
+            padding: .5rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .tools * {
+            margin-left: .3rem;
+        }
+
+        .notes {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="add" id="add">
+        <i class="fas fa-plus"></i>Add Note
+    </button>
+    <div class="notes">
+
+    </div>
+    <script>
+        let add = document.querySelector('.add');
+        let notes = document.querySelector('.notes')
+        add.addEventListener('click', function () {
+            let a = document.createElement('div');
+            a.classList.add('note');
+            a.innerHTML = `
+        <div class="tools">
+            <button class="edit"><i class="fa fa-edit"></i> </button>
+            <button class="delete"><i class="fa fa-trash-alt"></i> </button>
+        </div>
+        <div class="main"></div>
+        <textarea></textarea>`
+        notes.appendChild(a)
+        })
+    </script>
+</body>
+
+</html>
